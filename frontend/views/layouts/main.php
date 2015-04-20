@@ -34,11 +34,11 @@ $url = Yii::$app->params['_url'];
             </div>    
             <div id='right_banner'>
                 <ul id='nav_header'>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">News &amp; Event</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="<?php echo $url; ?>home">Home</a></li>
+                    <li><a href="<?php echo $url; ?>about">About Us</a></li>
+                    <li><a href="<?php echo $url; ?>">News &amp; Event</a></li>
+                    <li><a href="<?php echo $url; ?>">Support</a></li>
+                    <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
                 <div id='search_header'>
                     <form action="" method="post">
@@ -62,7 +62,7 @@ $url = Yii::$app->params['_url'];
           
             <div class="sidebar_left">
             	<h2><i class="fa fa-list-ul"></i>Categories</h2>
-                <ul class="nav">
+                <ul class="nav_bar">
                     <li><a href="#">Best Sellers</a></li>
                     <li><a href="#">St Patricks</a></li>
                     <li><a href="#">Automotive</a></li>
@@ -113,11 +113,11 @@ $url = Yii::$app->params['_url'];
     	<div class="container">
         	<div class="col_footer">
             	<h2>GENERAL</h2>
-            	<ul class="nav_footer">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About Us</a></li>
+            	<ul class="nav_footer">                    
+                    <li><a href="<?php echo $url; ?>home">Home</a></li>
+                    <li><a href="<?php echo $url; ?>about">About Us</a></li>
                     <li><a href="">News &amp; Event</a></li>
-                    <li><a href="">Contact Us</a></li>
+                    <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
             </div> 
             <div class="col_footer">
