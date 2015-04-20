@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 use common\models\Product;
 
 class ProductsController extends \yii\web\Controller
@@ -37,7 +38,7 @@ class ProductsController extends \yii\web\Controller
 			$img = $html->find('a.highslide img', 0); //Get Product image
 			if(!empty($img)){
 				$file_name = end(explode('/', $img->src));
-				$product_info['image'] = $file_name;
+				$product_info['image'] = urldecode($file_name);
 				copy($img->src, $imgdir . $file_name);
 			}
 
@@ -59,12 +60,12 @@ class ProductsController extends \yii\web\Controller
 			$product_model->attributes = $product_info;
 			if($product_model->validate()){
 				if($product_model->save()){
-					return $this->refresh();
+					return $this->redirect(['products/view/' . $product_model->id]);
 				}else{
-					$this->setFlash('saveErr', 'An error occurred. Please try again!');
+					Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
 				}
 			}else{
-				$this->setFlash('saveErr', 'An error occurred. Please try again!');
+				Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
 			}
     	}
 
@@ -72,7 +73,49 @@ class ProductsController extends \yii\web\Controller
     }
 
     public function actionView(){
-    	return $this->render('view');
+    	$product_id = Yii::$app->request->get('id');
+    	if(!empty($product_id)){
+    		$product = Product::find()->where('id=:id', [':id' => $product_id])->one();
+    		if($product){
+    			return $this->render('view', ['model' => $product]);
+    		}else{
+    			throw new Exception("Page not found", 1);
+    		}
+    	}else{
+    		throw new Exception("Error Processing Request", 1);
+    	}
+    }
+
+    public function actionEdit(){
+    	$product_id = Yii::$app->request->get('id');
+    	if(!empty($product_id)){
+
+    		$product = Product::find()->where('id=:id', [':id' => $product_id])->one();
+    		if($product){
+    			if(Yii::$app->request->post('Product')){
+
+					$imgdir = Yii::getAlias('@frontend/web/img/');
+    				$product->attributes = Yii::$app->request->post('Product');
+
+    				$file = UploadedFile::getInstanceByName("Product[image]");
+					if(!empty($file)){
+						$file->saveAs($imgdir . $file->name, true);
+						$product->image = $file->name;
+    				}
+
+    				if($product->validate() && $product->save()){
+    					Yii::$app->session->setFlash('success', 'Product has been saved.');
+    					return $this->refresh();
+    				}
+    			}
+
+    			return $this->render('edit', ['model' => $product]);
+    		}else{
+    			throw new Exception("Page not found", 1);
+    		}
+    	}else{
+    		throw new Exception("Error Processing Request", 1);
+    	}
     }
 
 }

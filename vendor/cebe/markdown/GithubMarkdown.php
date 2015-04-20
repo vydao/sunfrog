@@ -1,27 +1,16 @@
 <?php
-/**
- * @copyright Copyright (c) 2014 Carsten Brandt
- * @license https://github.com/cebe/markdown/blob/master/LICENSE
- * @link https://github.com/cebe/markdown#readme
- */
 
 namespace cebe\markdown;
 
 /**
- * Markdown parser for github flavored markdown.
+ * Markdown parser for github flavored markdown
  *
  * @author Carsten Brandt <mail@cebe.cc>
+ * @license https://github.com/cebe/markdown/blob/master/LICENSE
+ * @link https://github.com/cebe/markdown#readme
  */
 class GithubMarkdown extends Markdown
 {
-	// include block element parsing using traits
-	use block\TableTrait;
-	use block\FencedCodeTrait;
-
-	// include inline element parsing using traits
-	use inline\StrikeoutTrait;
-	use inline\UrlLinkTrait;
-
 	/**
 	 * @var boolean whether to interpret newlines as `<br />`-tags.
 	 * This feature is useful for comments where newlines are often meant to be real new lines.
@@ -31,75 +20,104 @@ class GithubMarkdown extends Markdown
 	/**
 	 * @inheritDoc
 	 */
-	protected $escapeCharacters = [
-		// from Markdown
-		'\\', // backslash
-		'`', // backtick
-		'*', // asterisk
-		'_', // underscore
-		'{', '}', // curly braces
-		'[', ']', // square brackets
-		'(', ')', // parentheses
-		'#', // hash mark
-		'+', // plus sign
-		'-', // minus sign (hyphen)
-		'.', // dot
-		'!', // exclamation mark
-		'<', '>',
-		// added by GithubMarkdown
-		':', // colon
-		'|', // pipe
-	];
+	protected function inlineMarkers()
+	{
+		$markers = [
+			'http'  => 'parseUrl',
+			'ftp'   => 'parseUrl',
+			'~~'    => 'parseStrike',
+		];
 
+		if ($this->enableNewlines) {
+			$markers["\n"] = 'parseDirectNewline';
+		}
+
+		return array_merge(parent::inlineMarkers(), $markers);
+	}
+
+
+	// block parsing
 
 
 	/**
-	 * Consume lines for a paragraph
-	 *
-	 * Allow headlines, lists and code to break paragraphs
+	 * @inheritDoc
 	 */
-	protected function consumeParagraph($lines, $current)
+	protected function identifyLine($lines, $current)
 	{
-		// consume until newline
-		$content = [];
-		for ($i = $current, $count = count($lines); $i < $count; $i++) {
-			$line = $lines[$i];
-			if (empty($line)
-				|| ltrim($line) === ''
-				|| !ctype_alpha($line[0]) && (
-					$this->identifyQuote($line, $lines, $i) ||
-					$this->identifyCode($line, $lines, $i) ||
-					$this->identifyFencedCode($line, $lines, $i) ||
-					$this->identifyUl($line, $lines, $i) ||
-					$this->identifyOl($line, $lines, $i) ||
-					$this->identifyHr($line, $lines, $i)
-				)
-				|| $this->identifyHeadline($line, $lines, $i))
-			{
-				break;
-			} else {
-				$content[] = $line;
-			}
+		if (isset($lines[$current]) && strncmp($lines[$current], '```', 3) === 0) {
+			return 'fencedCode';
 		}
-		$block = [
-			'paragraph',
-			'content' => $this->parseInline(implode("\n", $content)),
-		];
-		return [$block, --$i];
+		return parent::identifyLine($lines, $current);
 	}
 
 	/**
-	 * @inheritdocs
-	 *
-	 * Parses a newline indicated by two spaces on the end of a markdown line.
+	 * Consume lines for a fenced code block
 	 */
-	protected function renderText($text)
+	protected function consumeFencedCode($lines, $current)
 	{
-		if ($this->enableNewlines) {
-			$br = $this->html5 ? "<br>\n" : "<br />\n";
-			return strtr($text[1], ["  \n" => $br, "\n" => $br]);
-		} else {
-			return parent::renderText($text);
+		// consume until ```
+		$block = [
+			'type' => 'code',
+			'content' => [],
+		];
+		$line = rtrim($lines[$current]);
+		$fence = substr($line, 0, $pos = strrpos($line, '`') + 1);
+		$language = substr($line, $pos);
+		if (!empty($language)) {
+			$block['language'] = $language;
 		}
+		for($i = $current + 1, $count = count($lines); $i < $count; $i++) {
+			if (rtrim($line = $lines[$i]) !== $fence) {
+				$block['content'][] = $line;
+			} else {
+				break;
+			}
+		}
+		return [$block, $i];
+	}
+
+
+	// inline parsing
+
+
+	/**
+	 * Parses the strikethrough feature.
+	 */
+	protected function parseStrike($markdown)
+	{
+		if (preg_match('/^~~(.+?)~~/', $markdown, $matches)) {
+			return [
+				'<del>' . $this->parseInline($matches[1]) . '</del>',
+				strlen($matches[0])
+			];
+		}
+		return [$markdown[0] . $markdown[1], 2];
+	}
+
+	/**
+	 * Parses urls and adds auto linking feature.
+	 */
+	protected function parseUrl($markdown)
+	{
+		if (preg_match('/^((https?|ftp):\/\/[^ ]+)/', $markdown, $matches)) {
+			$url = htmlspecialchars($matches[1], ENT_COMPAT | ENT_HTML401, 'UTF-8');
+			$text = htmlspecialchars(urldecode($matches[1]), ENT_NOQUOTES, 'UTF-8');
+			return [
+				'<a href="' . $url . '">' . $text . '</a>',
+				strlen($matches[0])
+			];
+		}
+		return [substr($markdown, 0, 4), 4];
+	}
+
+	/**
+	 * Parses a newline indicated by a direct line break. This is only used when `enableNewlines` is true.
+	 */
+	protected function parseDirectNewline($markdown)
+	{
+		return [
+			$this->html5 ? "<br>\n" : "<br />\n",
+			1
+		];
 	}
 }
