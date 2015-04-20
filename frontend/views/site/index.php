@@ -1,51 +1,105 @@
 <?php
 /* @var $this yii\web\View */
+
 $this->title = 'My Yii Application';
+
+$url = Yii::$app->params['_url'];
 ?>
-<div class="site-index">
+<aside id='slideshow'>
+   	<a href=""><img src="<?php echo $url; ?>photos/slide.jpg" border="0" /></a>
+    <div class="clear"></div>
+</aside>            
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<article class="content">            
+	<div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp1.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
     </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
+    <div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp2.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
     </div>
-</div>
+    <div class="product_info" style="margin-right:0px;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp3.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info" style="margin-right:0px; float:right;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp4.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+                    
+    <div class="product_space"></div>
+                    
+    <div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp2.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp1.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info" style="margin-right:0px;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp3.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info" style="margin-right:0px; float:right;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp4.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+                    
+    <div class="product_space"></div>
+                    
+    <div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp4.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp3.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info" style="margin-right:0px;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp1.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info" style="margin-right:0px; float:right;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp2.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+                    
+    <div class="product_space"></div>
+                    
+    <div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp1.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp4.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info" style="margin-right:0px;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp2.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>
+    <div class="product_info" style="margin-right:0px; float:right;">
+    	<a href="" class="product_img"><img src="<?php echo $url; ?>photos/sp3.jpg" border="0" /></a>
+        <h2><a href="" class="product_name">DTF Down to Fiesta</a></h2>
+        <h3 class="product_price">$19.99</h3>
+    </div>                
+    
+    <div class="clear"></div>
+</article>

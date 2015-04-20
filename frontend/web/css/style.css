@@ -1,0 +1,363 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	font: 12px Helvetica, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+	list-style:none;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0px;
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #000;
+	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+}
+
+/*HTML 5 support - Sets new HTML 5 tags to display:block so browsers know how to render the tags properly. */
+header, section, footer, aside, article, figure {
+	display: block;
+}
+.clear{ clear:both; }
+/* END STYLE DÈAULT*/
+
+
+/* ~~ This fixed width container surrounds all other blocks ~~ */
+.container {
+	width: 1000px;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+}
+
+
+/* HEADER */
+header {
+	background-color: #FFF;
+	moz-box-shadow: 0 10px 135px 5px #d0d0d0;
+	-webkit-box-shadow: 0 10px 135px 5px #d0d0d0;
+	box-shadow: 0 10px 135px 5px #d0d0d0;
+}
+#banner{
+	width:250px;
+	float:left;
+}
+#right_banner{
+	width:745px;
+	float:right;
+}
+#nav_header{
+	text-align:right;
+	margin-top:5px;
+}
+#nav_header li{
+	display:inline-block;	
+	border-left:1px solid #DDD;	
+	padding:0px 10px;
+	line-height:30px;
+}
+#nav_header li:first-child{
+	border-left:none;
+}
+#nav_header li a{
+	font-size:11px;
+	color:#3495d2;
+	font-weight:bold;
+	text-decoration:none;
+	text-transform:uppercase;
+	display:block;
+	transition:0.3s; -moz-transition:0.3s; -webkit-transition:0.3s;		
+}
+#nav_header li:hover a{
+	color:#424242;
+	text-decoration:underline;
+}
+
+#search_header{
+	margin-top:10px;
+	float:right;
+}
+#search_header input[type='text']{
+	line-height:30px;
+	border:1px solid #c7c7c7;
+	padding:0px 19px;
+	width:310px;
+	float:left;
+	color:#999;
+	transition:0.3s; -moz-transition:0.3s; -webkit-transition:0.3s;
+}
+#search_header input[type='text']:focus{
+	width:350px;
+}
+#search_header input[type='submit']{
+	line-height:32px;
+	border:none;
+	cursor:pointer !important;
+	padding:0px 14px;
+	float:left;
+	font-size:12px;
+	font-weight:bold;
+	color:#FFF;
+	margin-left:10px;
+	background: -webkit-linear-gradient(0deg, #000, #666); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(0deg, #000, #666); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(0deg, #000, #666); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(0deg, #000, #666); /* Standard syntax */
+	
+	border-radius:5px; -moz-border-radius:5px; -ms-border-radius:5px; -o-border-radius:5px; -webkit-border-radius:5px;
+}
+/* END HEADER */
+
+.wrapper{
+	padding-top:15px;
+}
+#breadcrumb{
+	padding-top:5px;
+	margin-bottom:15px;
+	font-size:11px;
+	color:#333;
+	font-weight:bold;
+}
+#breadcrumb a{
+	color:#3495d2;
+	text-decoration:none;
+	display:inline-block;
+	transition:0.3s; -moz-transition:0.3s; -webkit-transition:0.3s;
+}
+#breadcrumb a:hover{
+	color:#424242;
+	text-decoration:underline;
+}
+#breadcrumb span{
+	display:inline-block;
+	padding:0px 7px;
+}
+
+/*LEFT*/
+.sidebar_left {
+	float: left;
+	width: 190px;
+	padding-bottom: 10px;
+}
+.sidebar_left h2{
+	margin-bottom:10px;
+	padding:0;
+	font-size:18px;
+	font-weight:bold;
+	color:#3495d2;
+	text-align:left;
+	display:block;
+}
+.sidebar_left h2 i{
+	margin-right:10px;
+	color:#9e9e9e;
+}
+.sidebar_left ul.nav{
+	list-style-type: disc;
+	list-style-position:inside;
+	color:#disc;	
+}
+.sidebar_left ul.nav li{
+	padding:7px 0px;
+	border-top:1px solid #dfdfdf;
+}
+.sidebar_left ul.nav li a{
+	color:#9e9e9e;
+	font-size:12px;
+	font-weight:bold;
+	line-height:1.3;
+	text-decoration:none;
+	transition:0.3s; -moz-transition:0.3s; -webkit-transition:0.3s;
+}
+.sidebar_left ul.nav li:hover{
+	color:#F00;
+}
+.sidebar_left ul.nav li:hover a{
+	color:#3495d2;
+	padding-left:5px;	
+}
+
+
+.news_nav{
+	list-style-type:square;
+	list-style-position:inside;
+}
+.news_nav li{
+	padding:4px 0px;
+	display:block;
+	border-top:1px solid #dfdfdf;
+}
+.news_nav li:first-child{
+	border-top:none;
+}
+.news_nav li i{
+	margin-right:7px;
+}
+.news_nav li a{
+	color:#9e9e9e;
+	text-decoration:none;
+}
+.news_nav li a:hover{
+	color:#3495d2;
+	text-decoration:underline;
+}
+/*LEFT*/
+
+.main_content {
+	width: 795px;
+	float: right;
+}
+
+#slideshow{
+	width:100%;
+	height:230px;
+	overflow:hidden;
+	display:block;
+	margin-bottom:15px;
+}
+#slideshow img{
+	width:100%;
+	height:230px;
+	border:none;
+	float:left;
+}
+
+
+/*PRODUCT*/
+.product_info{
+	width:175px;
+	float:left;
+	border: 1px solid #ececec;
+	padding:5px;
+	margin-right:16px;
+	transition:0.3s; -moz-transition:0.3s; -webkit-transition:0.3s;
+}
+.product_info:hover{
+	box-shadow:0px 0px 10px #CCC;
+}
+.product_info .product_img{
+	width:175px;
+	height:175px;
+	float:left;
+	overflow:hidden;
+}
+.product_info .product_img img{
+	width:175px;
+	height:175px;
+	float:left;
+	border: none;
+	transition:0.4s; -moz-transition:0.4s; -webkit-transition:0.4s;
+}
+.product_info .product_img img:hover{
+	transform:scale(1.2); -moz-transform:scale(1.2); -webkit-transform:scale(1.2);
+}
+.product_info h1,.product_info h2,.product_info h3{
+	padding:0px;
+	margin:0px;
+}
+.product_info .product_name{
+	font-size:12px; 
+	font-weight:bold; 
+	color:#333;
+	line-height:1.3;
+	width:100%;
+	float:left;
+	padding:7px 0px 5px;
+	text-align:center;
+	text-decoration:none;
+	transition:0.3s; -moz-transition:0.3s; -webkit-transition:0.3s;
+}
+.product_info .product_name:hover{
+	color:#F00;
+}
+.product_info .product_price{
+	color: #78c042;
+	font-size:16px;
+	font-weight:400;
+	text-align:right;
+	width:100%;
+	float:left;
+	padding:6px 0px 4px;
+}
+
+.product_space{
+	width:793px;
+	background: #f2f2ed;
+	border: 1px solid #e5e5e5;
+	height: 4px;
+	float:left;
+	margin:10px 0px;
+}
+/*PRODUCT*/
+
+/* ~~ The footer ~~ */
+footer {
+	margin-top:15px;
+	padding:15px 0px;
+	background-color: #FFF;
+	border-top:1px solid #D9D9D9;
+	clear:both;
+}
+.col_footer{
+	width:185px;
+	float:left;
+	margin-right:20px;
+}
+div.col_footer:last-child{
+	margin-right:0px;
+}
+.col_footer h2, .col_right_footer h2{
+	color:#666;
+	font-size:14px;
+	font-weight:bold;
+	padding:7px 0px;
+	margin:0;
+	text-transform:uppercase;
+	border-bottom:1px solid #CCC;
+	margin-bottom:10px;
+}
+
+.col_footer ul li{
+	padding:3px 0px;
+	display:block;
+}
+.col_footer ul li a{
+	color:#777;
+	font-size:12px;
+	text-decoration:none;
+	font-weight:bold;
+	transition:0.3s; -moz-transition:0.3s; -webkit-transition:0.3s;
+}
+.col_footer ul li a:hover{
+	color:#3495d2;
+	text-decoration:underline;
+}
+
+.col_right_footer{
+	width:590px;
+	float:right;
+}
+.content_footer{
+	line-height:1.5;
+	color:#424242;	
+}
+.content_footer table, .content_footer img, .content_footer iframe{
+	width:100%;
+}
