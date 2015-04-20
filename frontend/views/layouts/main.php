@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 
 /* @var $this \yii\web\View */
@@ -30,15 +29,15 @@ $url = Yii::$app->params['_url'];
     <header>
     	<div class="container">
             <div id='banner'>
-                <a href="#"><img src="<?php echo $url; ?>photos/logo.png" alt="Insert Logo Here" width="250" height="90" border="0" /></a>
+                <a href="<?php echo $url; ?>home"><img src="<?php echo $url; ?>photos/logo.png" alt="Insert Logo Here" width="250" height="90" border="0" /></a>
             </div>    
             <div id='right_banner'>
                 <ul id='nav_header'>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">News &amp; Event</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="<?php echo $url; ?>home">Home</a></li>
+                    <li><a href="<?php echo $url; ?>about">About Us</a></li>
+                    <li><a href="<?php echo $url; ?>">News &amp; Event</a></li>
+                    <li><a href="<?php echo $url; ?>">Support</a></li>
+                    <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
                 <div id='search_header'>
                     <form action="" method="post">
@@ -53,16 +52,10 @@ $url = Yii::$app->params['_url'];
     </header>
     
     <div class="container">
-    	<div class="wrapper">
-        	<div id='breadcrumb'>
-                <a href="" style="display:none;">Home</a>
-                <span style="display:none;">&rsaquo;</span>
-                <a href="" style="display:none;">About Us</a>
-            </div>
-          
+    	<div class="wrapper">                    	          
             <div class="sidebar_left">
             	<h2><i class="fa fa-list-ul"></i>Categories</h2>
-                <ul class="nav">
+                <ul class="nav_bar">
                     <li><a href="#">Best Sellers</a></li>
                     <li><a href="#">St Patricks</a></li>
                     <li><a href="#">Automotive</a></li>
@@ -113,11 +106,11 @@ $url = Yii::$app->params['_url'];
     	<div class="container">
         	<div class="col_footer">
             	<h2>GENERAL</h2>
-            	<ul class="nav_footer">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About Us</a></li>
+            	<ul class="nav_footer">                    
+                    <li><a href="<?php echo $url; ?>home">Home</a></li>
+                    <li><a href="<?php echo $url; ?>about">About Us</a></li>
                     <li><a href="">News &amp; Event</a></li>
-                    <li><a href="">Contact Us</a></li>
+                    <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
             </div> 
             <div class="col_footer">

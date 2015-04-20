@@ -29,19 +29,31 @@ return [
             'errorAction' => 'site/error',
         ],
         'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'js'=>[]
-                ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js'=>[]
-                ],
-                'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [],
-                ],
+            'bundles' => [                
+                //'yii\bootstrap\BootstrapPluginAsset' => [
+                    //'js'=>[]
+                //],
+                //'yii\bootstrap\BootstrapAsset' => [
+                   // 'css' => [],
+                //],
         
             ],
-        ],
+        ],       
+        'urlManager'=> [
+	        'class'	=> 'yii\web\UrlManager',
+	        'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'enableStrictParsing' => false,            
+			'rules' => [
+                'home' => '/site/index',
+                'about' => '/site/about',                
+                'contact' => '/site/contact',
+                
+				//'<controller:\w+>/<id:\d+>'	=> '<controller>/view',
+				//'<controller:\w+>/<action:\w+>/<id:\d+>'	=> '<controller>/<action>',
+				//'<controller:\w+>/<action:\w+>'	=> '<controller>/<action>',				
+			],
+		],
     ],
     'params' => $params,
 ];

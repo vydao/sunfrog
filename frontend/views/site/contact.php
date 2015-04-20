@@ -12,13 +12,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
+    
 
-    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
-
-    <div class="row">
-        <div class="col-lg-5">
+    <div class="row">        
+        <div class="col-lg-7" style="margin: auto;">
+            <h3 style="font-size: 14px; margin-bottom: 10px; text-align: center; font-weight: bold;">
+                If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+            </h3>
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                 <?= $form->field($model, 'name') ?>
                 <?= $form->field($model, 'email') ?>
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
-        </div>
+        </div>        
     </div>
 
 </div>
