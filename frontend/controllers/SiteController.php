@@ -3,8 +3,11 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\ContactForm;
+use common\models\Config;
+
 use common\models\Product;
 use common\models\Category;
+
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -73,15 +76,21 @@ class SiteController extends Controller
 
             return $this->refresh();
         } else {
+            $data = Config::find()->select('content, title, description, keyword')->where('com="contact"')->one();
+            
             return $this->render('contact', [
                 'model' => $model,
+                'data' => $data,
             ]);
         }
     }
 
     public function actionAbout()
     {
-        return $this->render('about');
+        $data = Config::find()->select('content, title, description, keyword')->where('com="about"')->one();
+        return $this->render('about', [
+            'data' => $data,
+        ]);
     }    
 
     public function actionDetail()

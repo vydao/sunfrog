@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
+use common\models\Config;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -8,6 +9,10 @@ use frontend\assets\AppAsset;
 AppAsset::register($this);
 
 $url = Yii::$app->params['_url'];
+
+//Default load
+$footer = Config::find()->select('content')->where('com="footer"')->one();
+$video = Config::find()->select('content')->where('com="video"')->one();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -65,7 +70,7 @@ $url = Yii::$app->params['_url'];
                 
                 <h2 style="margin-top:15px;"><i class="fa fa-video-camera"></i>Video Clip</h2>
                 <div id='video_left'>
-                	<iframe width="100%" height="200" src="https://www.youtube.com/embed/NTFTXfXqfp4" frameborder="0" allowfullscreen></iframe>
+                	<?php echo $video->content; ?>
                 </div>
                 
                 <h2 style="margin-top:15px;"><i class="fa fa-send"></i>Hot News</h2>
@@ -112,9 +117,7 @@ $url = Yii::$app->params['_url'];
             <div class="col_right_footer">
             	<h2>CONTACT US</h2>
             	<div class="content_footer">
-                	<p>We enjoy helping groups, individuals, business, non-profits, or anyone looking to make their event, business, or fund-raiser more profitable.</p>                
-                	<p>SunFrog wholeale offers a complete apparel product line and a wide variety of color choices. Get started by contacting a sales representative of SunFrog today.</p>
-                    <p>(Chỗ này là 1 bài mô tả ngắn gọn về website hoặc gì cũng được)</p>
+                	<?php echo $footer->content; ?>
                 </div>
             </div>
             <div class="clear"></div>
