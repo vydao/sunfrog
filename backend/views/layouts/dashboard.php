@@ -19,6 +19,8 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    
+    
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -54,6 +56,9 @@ AppAsset::register($this);
                         </li>
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['settings']); ?>"><i class="fa fa-edit fa-fw"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['config']); ?>"><i class="fa fa-edit fa-fw"></i> Config</a>
                         </li>
                     </ul>
                </div>

@@ -18,32 +18,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-    
-    <!-- Place inside the <head> of your HTML -->
-    <script type="text/javascript" src="<?php echo Yii::$app->request->baseUrl ?>/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::$app->request->baseUrl ?>/js/tinymce/tinymce.min.js"></script>
-    <script type="text/javascript">
-    tinymce.init({
-        selector: ".tinymce_tag textarea",
-        theme: "modern",
-        height: 400,
-        plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-            "searchreplace wordcount visualblocks visualchars code fullscreen",
-            "insertdatetime media nonbreaking save table contextmenu directionality",
-            "emoticons template paste textcolor colorpicker textpattern"
-        ],
-        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image filemanager",
-        toolbar2: "print preview media | forecolor backcolor emoticons",
-        image_advtab: true,
-        templates: [
-            {title: 'Test template 1', content: 'Test 1'},
-            {title: 'Test template 2', content: 'Test 2'}
-        ]
-     });
-    </script>
-    
+    <?php $this->head() ?>      
 </head>
 <body>
     <?php $this->beginBody() ?>

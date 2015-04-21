@@ -15,6 +15,8 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+    public $layout = 'dashboard';
+     
     public function behaviors()
     {
         return [

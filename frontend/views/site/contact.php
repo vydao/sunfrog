@@ -11,11 +11,15 @@ $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
-    <h1 class="main_ttt"><?= Html::encode($this->title) ?></h1>
+    <h1 class="main_ttt"><i class="fa fa-external-link"></i> Contact Us</h1>
     
+    <div class="content_main">
+        <?php echo $data->content; ?>
+        <div class="clear"></div>
+    </div>       
 
-    <div class="row">        
-        <div class="col-lg-7" style="margin: auto;">
+    <div style="max-width: 550px; padding: 0px 20px; margin: 0px auto;">
+        <div class="col-lg-12">
             <h3 style="font-size: 14px; margin-bottom: 10px; text-align: center; font-weight: bold;">
                 If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
             </h3>
