@@ -25,6 +25,8 @@ class AppAsset extends AssetBundle
         'css/font-awesome-4.3.0/css/font-awesome.min.css',
     ];
     public $js = [
+        'js/jquery.min.js',
+        'js/tinymce/tinymce.min.js',
         'js/sb-admin-2.js',
         'js/metisMenu.js',
         'js/admin.js',
