@@ -21,8 +21,8 @@ AppAsset::register($this);
     <?php $this->head() ?>
     
     <!-- Place inside the <head> of your HTML -->
-    <script type="text/javascript" src="<?php echo Yii::$app->params['_url'] ?>/backend/web/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::$app->params['_url'] ?>/backend/web/js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::$app->request->baseUrl ?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::$app->request->baseUrl ?>/js/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
     tinymce.init({
         selector: ".tinymce_tag textarea",
