@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use common\models\Product;
+use common\models\Category;
+
 
 class ProductsController extends \yii\web\Controller
 {
@@ -18,6 +20,7 @@ class ProductsController extends \yii\web\Controller
     	if(Yii::$app->request->post('product_url')){
     		$product_model = new Product();
     		$product_info = [
+                'category_id' => '',
 	    		'name' => '',
 	    		'description' => '',
 	    		'size'	=> '',
@@ -25,6 +28,12 @@ class ProductsController extends \yii\web\Controller
 	    		'original_url' => '',
 	    		'created_ts' => date('Ymd')
     		];
+
+            $category = Yii::$app->request->post('category');
+            if(!empty($category)){
+                $product_info['category_id'] = $category;
+            }
+
     		$imgdir = Yii::getAlias('@frontend/web/img/');
     		$url = trim(Yii::$app->request->post('product_url'));
 
@@ -37,8 +46,8 @@ class ProductsController extends \yii\web\Controller
 
 			$img = $html->find('a.highslide img', 0); //Get Product image
 			if(!empty($img)){
-				$file_name = end(explode('/', $img->src));
-				$product_info['image'] = urldecode($file_name);
+				$file_name = urldecode(end(explode('/', $img->src)));
+				$product_info['image'] = $file_name;
 				copy($img->src, $imgdir . $file_name);
 			}
 
@@ -69,7 +78,21 @@ class ProductsController extends \yii\web\Controller
 			}
     	}
 
-        return $this->render('index');
+        $products = Product::find()
+            ->select('id, image, name, created_ts')
+            ->indexBy('id')
+            ->orderBy('created_ts DESC')
+            ->all();
+
+        $categories = Category::find()
+            ->indexBy('id')
+            ->orderBy('priority ASC')
+            ->all();
+
+        return $this->render('index', [
+                'categories' => $categories,
+                'products' => $products
+            ]);
     }
 
     public function actionView(){
@@ -89,11 +112,11 @@ class ProductsController extends \yii\web\Controller
     public function actionEdit(){
     	$product_id = Yii::$app->request->get('id');
     	if(!empty($product_id)){
-
     		$product = Product::find()->where('id=:id', [':id' => $product_id])->one();
     		if($product){
     			if(Yii::$app->request->post('Product')){
 
+                    $org_img = $product->image;
 					$imgdir = Yii::getAlias('@frontend/web/img/');
     				$product->attributes = Yii::$app->request->post('Product');
 
@@ -101,6 +124,8 @@ class ProductsController extends \yii\web\Controller
 					if(!empty($file)){
 						$file->saveAs($imgdir . $file->name, true);
 						$product->image = $file->name;
+    				}else{
+                        $product->image = $org_img;
     				}
 
     				if($product->validate() && $product->save()){
@@ -109,7 +134,12 @@ class ProductsController extends \yii\web\Controller
     				}
     			}
 
-    			return $this->render('edit', ['model' => $product]);
+                 $categories = Category::find()
+                    ->indexBy('id')
+                    ->orderBy('priority ASC')
+                    ->all();
+
+    			return $this->render('edit', ['model' => $product, 'categories' => $categories]);
     		}else{
     			throw new Exception("Page not found", 1);
     		}

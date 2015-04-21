@@ -56,24 +56,11 @@ $url = Yii::$app->params['_url'];
             <div class="sidebar_left">
             	<h2><i class="fa fa-list-ul"></i>Categories</h2>
                 <ul class="nav_bar">
-                    <li><a href="#">Best Sellers</a></li>
-                    <li><a href="#">St Patricks</a></li>
-                    <li><a href="#">Automotive</a></li>
-                    <li><a href="#">Camping</a></li>
-                    <li><a href="#">Faith</a></li>
-                    <li><a href="#">Fishing</a></li>
-                    <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Funny</a></li>
-                    <li><a href="#">Geek & Tech</a></li>
-                    <li><a href="#">Hunting</a></li>
-                    <li><a href="#">LifeStyle</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Music</a></li>
-                    <li><a href="#">Pets</a></li>
-                    <li><a href="#">Political</a></li>
-                    <li><a href="#">Sports</a></li>
-                    <li><a href="#">TV Shows</a></li>
-                    <li><a href="#">Video Games</a></li>
+                    <?php if(!empty(Yii::$app->params['left_menu'])){ ?>
+                        <?php foreach(Yii::$app->params['left_menu'] as $cate){ ?>
+                                <li><a href="#"><?php echo $cate->name; ?></a></li>
+                        <?php } ?>
+                    <?php } ?>
                 </ul>
                 
                 <h2 style="margin-top:15px;"><i class="fa fa-video-camera"></i>Video Clip</h2>

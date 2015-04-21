@@ -60,4 +60,13 @@ class Product extends \yii\db\ActiveRecord
             'deteled_ts' => 'Deteled Ts',
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasMany(Category::className(), ['id' => 'category_id']);
+    }
+
 }

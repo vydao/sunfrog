@@ -14,6 +14,18 @@ $this->title = 'Products Edit';
 		</div>
 
 		<div class="form-group">
+			<label class="label-char"> Category</label>
+			<select name="Product[category_id]" class="form-control" style="width:45%">
+				<option value="">Select a category</option>
+			<?php if(!empty($categories)){ ?>
+				<?php foreach ($categories as $key => $category) { ?>
+					<option value="<?php echo $category->id; ?>" <?php echo ($category->id == $model->category_id) ? 'selected' : ''; ?>><?php echo $category->name; ?></option>
+				<?php } ?>
+			<?php } ?>
+			</select>
+		</div>
+
+		<div class="form-group">
 			<label class="label-char">Product Name</label>
 			<?= $form->field($model, 'name')->textInput(['class' => 'form-control'])->label(false) ?>
 		</div>

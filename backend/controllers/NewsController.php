@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class NewsController extends Controller
 {
+    public $layout = 'dashboard';
     public function behaviors()
     {
         return [

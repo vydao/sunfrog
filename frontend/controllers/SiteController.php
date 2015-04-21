@@ -3,6 +3,8 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\ContactForm;
+use common\models\Product;
+use common\models\Category;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -17,6 +19,10 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+    public function init(){
+        Yii::$app->params['left_menu'] = $this->_getLeftMenu();
+    }
+
     public function behaviors()
     {
         return [
@@ -77,4 +83,32 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }    
+
+    public function actionDetail()
+    {
+        $product_id = Yii::$app->request->get('id');
+        if(!empty($product_id)){
+            $product = Product::find()->where('id=:id', [':id' => $product_id])->one();
+            if($product){
+                $related_products = Product::find()
+                    ->select('id, image')
+                    ->where('category_id=:id', [':id' => $product->category_id])
+                    ->orderBy('rand()')
+                    ->limit(8)
+                    ->all();
+                return $this->render('detail', ['model' => $product, 'related_products' => $related_products]);
+            }else{
+                throw new Exception("Page not found", 1);
+            }
+        }else{
+            throw new Exception("Error Processing Request", 1);
+        }
+    }
+
+    public function _getLeftMenu(){
+         return Category::find()
+                    ->indexBy('id')
+                    ->orderBy('priority ASC')
+                    ->all();
+    }
 }

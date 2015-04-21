@@ -363,4 +363,97 @@ div.col_footer:last-child{
 }
 .content_footer table, .content_footer img, .content_footer iframe{
 	width:100%;
+}.product-name{
+	font-weight: bold;
+	font-size: 18px;
+	margin-top:20px;
+}
+.text-desciption{
+	font-size: 15px;
+}
+.product-detail-image{
+	border: 1px solid #eee;
+	width: 90%;
+}
+.size_specs {
+  width: 100%;
+  font-weight: normal;
+  font-size: 11px;
+  border: 1px solid #ccc;
+}
+.size_specs td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #ccc;
+}
+.size_specs th {
+  text-align: left;
+  font-weight: bold;
+  background: #ebebeb;
+  padding: 10px 5px;
+}
+ul.sizespecs {
+  line-height: 18px;
+  width: 250px;
+  margin-left: 1px;
+  border: 4px solid #ebebeb;
+  padding: 20px;
+  list-style: disc;
+}
+.leftd {
+  float: left;
+}
+.size-details {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #56a542;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.3em;
+  margin-bottom: .5em;
+}
+a:link, a:visited {
+  text-decoration: none;
+}
+a {
+  background: transparent;
+}
+
+.orangeb {
+  background-image: -ms-linear-gradient(top, #F9B81C 0%, #F99F1C 100%);
+  background-image: -moz-linear-gradient(top, #F9B81C 0%, #F99F1C 100%);
+  background-image: -o-linear-gradient(top, #F9B81C 0%, #F99F1C 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F9B81C), color-stop(1, #F99F1C));
+  background-image: -webkit-linear-gradient(top, #F9B81C 0%, #F99F1C 100%);
+  background-image: linear-gradient(to bottom, #F9B81C 0%, #F99F1C 100%);
+  border-color: #F9B81C #F99F1C #F99F1C;
+}
+.button {
+  font-weight: bold;
+  padding: .4em 1em;
+  font-size: 14px;
+  line-height: 1.5em;
+  border-radius: 5px;
+  -moz-border-bottom-radius: 5px;
+  cursor: pointer;
+  width: auto;
+}
+.view-more{
+	width: 200px;
+	font-size: 20px;
+}
+.related-product{
+	width: 23%;
+	border:1px solid #eee;
+	padding: 0px 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	max-height: 100px;
+}
+.related-product-text{
+	font-weight: bold;
+	font-size: 18px;
+}
+.related-product:hover{
+	border: 1px solid #12c3ee;
+	cursor: pointer;
 }

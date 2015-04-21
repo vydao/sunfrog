@@ -22,50 +22,49 @@ AppAsset::register($this);
 </head>
 <body>
     <?php $this->beginBody() ?>
-    <div class="wrap">
-        <?php
-        NavBar::begin([
-            'brandLabel' => 'SunFrogShirt',
-            'brandUrl' => Yii::$app->homeUrl,
-            'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-            ],
-            ]);
-        $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ];
-        if (Yii::$app->user->isGuest) {
-            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-        } else {
-            $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-            'url' => ['/site/logout'],
-            'linkOptions' => ['data-method' => 'post']
-            ];
-        }
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => $menuItems,
-            ]);
-        NavBar::end();
-        ?>
-
-            <!-- Main Content -->
-            <div class="container-fluid">
-                <div class="side-body">
-                   <?= $content ?>
+        <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Sunfrog Admin</a>
+            </div>
+            <!-- /.navbar-header -->
+             <ul class="nav navbar-top-links navbar-right">
+                <li><a href="#">Home</a></li>
+                <li><a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['site/logout']); ?>">Logout</a></li>
+              </ul>
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products']); ?>"><i class="fa fa-dashboard fa-fw"></i> Products</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['categories']); ?>"><i class="fa fa-table fa-fw"></i> Categories</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['news']); ?>"><i class="fa fa-edit fa-fw"></i> News</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['settings']); ?>"><i class="fa fa-edit fa-fw"></i> Settings</a>
+                        </li>
+                    </ul>
                </div>
+                <!-- /.sidebar-collapse -->
            </div>
-
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper">
+             <?= $content ?>
    </div>
-
-   <footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; SunFrogShirt <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
-</footer>
-
 <?php $this->endBody() ?>
 </body>
 </html>

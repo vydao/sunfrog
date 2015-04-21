@@ -18,6 +18,11 @@ $this->title = 'Products Details';
 		</div>
 
 		<div class="form-group">
+			<label class="label-char">Category</label>
+			<div><?php echo (isset($model->category[0])) ? $model->category[0]->name : 'Not set'; ?></div>
+		</div>
+
+		<div class="form-group">
 			<label class="label-char">Image</label>
 			<div><img class="product-img" src="<?php echo (!empty($model->image)) ? Yii::$app->params['frontendUrl'] . '/img/' . $model->image : ''; ?>" alt="image" /></div>
 		</div>
