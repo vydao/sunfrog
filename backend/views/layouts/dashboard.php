@@ -66,6 +66,7 @@ AppAsset::register($this);
    </div>
     </div>
 <?php $this->endBody() ?>
+<script type="text/javascript" src="<?php echo Yii::$app->request->baseUrl ?>/js/tinymce/tinymce.min.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

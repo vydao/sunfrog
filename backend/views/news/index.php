@@ -25,10 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'title:ntext',
-           	'updated_date',
-            'created_date',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{update}{delete}',
+            ],
         ],
     ]); ?>
 

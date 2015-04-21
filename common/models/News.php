@@ -54,4 +54,21 @@ class News extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
         ];
     }
+    
+    public function beforeSave($insert)
+    {
+    	if( parent::beforeSave($insert) )
+    	{
+    		if( $insert )
+    		{
+    			$this->updated_date = time();
+    			$this->created_date = time();
+    		} else {
+    			$this->updated_date = time();
+    		}
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
 }

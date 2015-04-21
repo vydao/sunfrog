@@ -22,10 +22,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'meta_title')->textInput() ?>
 
-    <?= $form->field($model, 'updated_date')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
