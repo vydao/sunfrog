@@ -59,6 +59,8 @@ class NewsSearch extends News
             'id' => $this->id,
             'updated_date' => $this->updated_date,
             'created_date' => $this->created_date,
+        	'view_count' => $this->view_count,
+        	'featured' => $this->featured,        
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

@@ -4,20 +4,19 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\ContactForm;
 use common\models\Config;
-
+use app\components\CController;
 use common\models\Product;
 use common\models\Category;
 
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends CController
 {
     /**
      * @inheritdoc
@@ -112,12 +111,5 @@ class SiteController extends Controller
         }else{
             throw new Exception("Error Processing Request", 1);
         }
-    }
-
-    public function _getLeftMenu(){
-         return Category::find()
-                    ->indexBy('id')
-                    ->orderBy('priority ASC')
-                    ->all();
     }
 }

@@ -457,3 +457,8 @@ a {
 	border: 1px solid #12c3ee;
 	cursor: pointer;
 }
+p.date{float: left;font-size: 11px;text-transform: uppercase;color: #999;font-weight: 700;width: 100%;}
+div.new-brief{float: left;width: 100%;color: #444;font-size: 16px;line-height: 25px;margin: 10px 0;  max-height: 80px;overflow: hidden;text-overflow: ellipsis;}
+div.news-item hr{width: 100% !important;}
+a.read-more{color:#5F54FA;}
+div.news-content{float: left;width: 100%;color: #444;font-size: 16px;line-height: 25px;margin: 10px 0;}

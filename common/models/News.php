@@ -34,7 +34,7 @@ class News extends \yii\db\ActiveRecord
         return [
             [['title', 'content'], 'required'],
             [['title', 'content', 'meta_keyword', 'meta_description', 'meta_title'], 'string'],
-            [['updated_date', 'created_date'], 'integer']
+            [['updated_date', 'view_count', 'created_date', 'featured'], 'integer']
         ];
     }
 
@@ -52,6 +52,7 @@ class News extends \yii\db\ActiveRecord
             'meta_title' => 'Meta Title',
             'updated_date' => 'Updated Date',
             'created_date' => 'Created Date',
+        	'featured' => 'Featured'
         ];
     }
     
