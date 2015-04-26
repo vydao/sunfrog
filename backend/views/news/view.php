@@ -10,10 +10,7 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'News', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="news-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+<div class="news-view" style="padding-top:10px;">
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -28,15 +25,31 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'title:ntext',
-            'content:ntext',
             'meta_keyword:ntext',
             'meta_description:ntext',
             'meta_title:ntext',
-            'updated_date',
-            'created_date',
+    		[
+	            'label'=>'Created Date',
+            	'value'=>date('d M Y H:i A', $model->created_date)
+            ],
+    		[
+	            'label'=>'Updated Date',
+            	'value'=>date('d M Y H:i A', $model->updated_date)
+            ]            
         ],
     ]) ?>
+    
+    <div class="news-content">
+		<h2 class="sapo"><?= $model->description?></h2>
+		<?php if( !empty($model->image) ) : ?>
+		<div class="news-content-image">
+			<img alt="<?= $model->title;?>" title="<?= $model->title;?>" src="<?= $model->imageUrl() ?>">
+		</div>
+		<?php endif;?>
+		<div class="news-content">
+			<?= $model->content ?>
+		</div>
+	</div>
 
 </div>

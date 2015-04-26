@@ -20,6 +20,7 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
 	/*
 	tinymce.init({
         selector: ".tinymce_tag textarea",

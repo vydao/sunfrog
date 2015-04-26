@@ -95,15 +95,22 @@ class News extends \yii\db\ActiveRecord
     			}
     			
     			$this->image = UploadedFile::getInstance($this,'image');
-    			$img_dir = Yii::getAlias('@frontend') . '/web/uploads/news/';
-    			$file_link = md5(time()) . '.' . $this->image->extension;
-    			$save_to = $img_dir . $file_link;
-    			$this->image->saveAs($save_to);
-    			$this->image = $file_link;
-    			if( !empty( $image ) && file_exists($img_dir . $image) )
+    			if( $this->image )
     			{
-    				unlink($img_dir . $image);
+	    			$img_dir = Yii::getAlias('@frontend') . '/web/uploads/news/';
+	    			$file_link = md5(time()) . '.' . $this->image->extension;
+	    			$save_to = $img_dir . $file_link;
+	    			$this->image->saveAs($save_to);
+	    			$this->image = $file_link;
+	    			if( !empty( $image ) && file_exists($img_dir . $image) )
+	    			{
+	    				unlink($img_dir . $image);
+	    			}
+    			} else {
+    				$this->image = $image;
     			}
+    		} else {
+    			$this->image = $this->old_image;
     		}
     		
     		return true;

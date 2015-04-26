@@ -14,11 +14,9 @@ if(!empty($model->meta_title)) {
 <div class="news-content">
 	<h1><?= $model->title ?></h1>
 	<h2 class="sapo"><?= $model->description?></h2>
-	<?php 
-	$img_url = $model->imageUrl();
-	if( !empty($img_url) ) : ?>
+	<?php if( !empty($model->image) ) : ?>
 	<div class="news-content-image">
-		<img alt="<?= $model->title;?>" title="<?= $model->title;?>" src="<?= $img_url ?>">
+		<img alt="<?= $model->title;?>" title="<?= $model->title;?>" src="<?= $model->imageUrl() ?>">
 	</div>
 	<?php endif;?>
 	<div class="news-content">

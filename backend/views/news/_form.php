@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 	<?php 
 		if(!$model->isNewRecord && !empty($model->image) ) : ?>
 	<div class="form-group news-image">
-		<img alt="" src="<?= Yii::$app->params['site_url'] . '/uploads/news/' . $model->image ?>">
+		<img alt="" src="<?= Yii::$app->params['site_url'] . '/uploads/news/' . $model->image ?>" style="max-width: 900px;">
 	</div>
 	<?php endif;?>
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>

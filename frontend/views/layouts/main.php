@@ -40,7 +40,7 @@ $video = Config::find()->select('content')->where('com="video"')->one();
                 <ul id='nav_header'>
                     <li><a href="<?php echo $url; ?>home">Home</a></li>
                     <li><a href="<?php echo $url; ?>about">About Us</a></li>
-                    <li><a href="<?php echo $url; ?>">News &amp; Event</a></li>
+                    <li><a href="<?php echo $url; ?>news">News &amp; Event</a></li>
                     <li><a href="<?php echo $url; ?>">Support</a></li>
                     <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
