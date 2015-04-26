@@ -21,7 +21,7 @@ $video = Config::find()->select('content')->where('com="video"')->one();
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(Yii::$app->name . ' - ' .$this->title) ?></title>
     <?php $this->head() ?>
     <script src="<?php echo $url; ?>js/jquery-1.7.2.js" type="text/javascript"></script>
     <!--[if lt IE 9]>

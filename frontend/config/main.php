@@ -6,11 +6,12 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
-return [
+return [	
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+	'name'=>'Sun Frog',
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

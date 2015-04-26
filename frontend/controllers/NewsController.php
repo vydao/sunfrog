@@ -14,19 +14,18 @@ class NewsController extends CController
     	$data = Config::find()->select('content, title, description, keyword')->where('com="news"')->one();
     	 
 		$this->title = 'News';
-		
-		$this->title = 'News' . ((isset($data->title) && !empty($data->title)) ? $data->title : '');
 		    	 
     	$models = News::find()
     		->orderBy('featured DESC, created_date DESC')
     		->all();
+    		
     	$dataProvider = new ActiveDataProvider([
-    		'query'=>News::find()
-	    		->orderBy('featured DESC, created_date DESC'),
+    		'query'=>News::find()->orderBy('featured DESC, created_date DESC'),
 	    	'pagination' => [
             	'pageSize' => 10,
         	],
     	]);
+    	
         return $this->render('index', ['dataProvider'=>$dataProvider]);
     }
 	
@@ -36,7 +35,9 @@ class NewsController extends CController
      */
     public function actionView($id)
     {
-    	$model = News::find()->where(['id'=>$id])->one();
+    	$model = News::find()->where(['id'=>$id])->one(); 
+    	$model->view_count = $model->view_count + 1;
+    	$model->save();
     	return $this->render('view', array('model'=>$model));
     }
 }

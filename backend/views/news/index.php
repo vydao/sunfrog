@@ -21,12 +21,36 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => false,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn',
+            'options'=>['style'=>'width:50px;']
+            ],            
+            [
+	            'attribute'=>'image',
+	            'label'=>'Image',
+            	'format'=>'raw',            
+	            'content'=>function($data){
+            		if( !empty($data->image) )
+	            		return Html::img($data->imageUrl(),['alt'=>$data->title, 'style'=>'max-width:80px;max-height: 80px;']); 
+	            	else 
+	            	return null;          
+	            },
+	           'options'=>['style'=>'width:80px;']
+            ],   
             'title:ntext',
+            [
+	            'attribute'=>'created_date',
+	            'label'=>'Created Date',
+            	'format'=>'raw',            
+	            'content'=>function($data){
+	            	return date('d M Y H:i', $data->created_date);            
+	            },
+	            'options'=>['style'=>'width:150px;']
+            ], 
             ['class' => 'yii\grid\ActionColumn',
-            'template'=>'{update}{delete}',
+            'template'=>'{view} {update} {delete}',
+            'options'=>['style'=>'width:80px;']
             ],
         ],
     ]); ?>

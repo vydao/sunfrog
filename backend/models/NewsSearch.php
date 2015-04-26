@@ -68,7 +68,9 @@ class NewsSearch extends News
             ->andFilterWhere(['like', 'meta_keyword', $this->meta_keyword])
             ->andFilterWhere(['like', 'meta_description', $this->meta_description])
             ->andFilterWhere(['like', 'meta_title', $this->meta_title]);
-
+            
+		$query->orderBy('created_date DESC');
+		
         return $dataProvider;
     }
 }

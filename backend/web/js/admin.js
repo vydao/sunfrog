@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	tinymce.init({
-		selector:'textarea',
+		selector:'#news-content',
 		theme: "modern",
 	    height: 400,
 		setup: function(editor) {
@@ -9,6 +9,18 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
+	tinymce.init({
+		selector:'#news-description',
+		theme: "modern",
+	    height: 150,
+		setup: function(editor) {
+			editor.on('change', function(e) {
+				$('textarea#news-description').val(tinymce.get('news-description').getContent());
+			});
+		}
+	});
+	/*
 	tinymce.init({
         selector: ".tinymce_tag textarea",
         theme: "modern",
@@ -27,4 +39,5 @@ $(document).ready(function(){
             {title: 'Test template 2', content: 'Test 2'}
         ]
     });
+    */
 });
