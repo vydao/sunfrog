@@ -4,19 +4,20 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\ContactForm;
 use common\models\Config;
-use app\components\CController;
+
 use common\models\Product;
 use common\models\Category;
 
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
+use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
  * Site controller
  */
-class SiteController extends CController
+class SiteController extends Controller
 {
     /**
      * @inheritdoc
@@ -36,9 +37,9 @@ class SiteController extends CController
                         'actions' => ['index', 'about', 'contact', 'error'],
                         'allow' => true,
                         'roles' => ['?'],
-                    ],                    
+                    ],
                 ],
-            ],            
+            ],
         ];
     }
 
@@ -60,9 +61,15 @@ class SiteController extends CController
 
     public function actionIndex()
     {
-        return $this->render('index');
-    }   
-   
+        $products = Product::find()
+                      ->select('id, image, name, original_url')
+                      ->indexBy('id')
+                      ->orderBy('created_ts DESC')
+                      ->limit(40)
+                      ->all();
+        return $this->render('index', ['products' => $products]);
+    }
+
     public function actionContact()
     {
         $model = new ContactForm();
@@ -90,7 +97,7 @@ class SiteController extends CController
         return $this->render('about', [
             'data' => $data,
         ]);
-    }    
+    }
 
     public function actionDetail()
     {
@@ -111,5 +118,26 @@ class SiteController extends CController
         }else{
             throw new Exception("Error Processing Request", 1);
         }
+    }
+
+    public function actionCategory()
+    {
+        $cate_id = Yii::$app->request->get('id');
+        if(!empty($cate_id)){
+            $products = Product::find()
+                          ->where('category_id=:id', [':id' => $cate_id])
+                          ->orderBy('created_ts DESC')
+                          ->all();
+            return $this->render('category', ['products' => $products]);
+        }else{
+            throw new Exception("Error Processing Request", 1);
+        }
+    }
+
+    private function _getLeftMenu(){
+         return Category::find()
+                    ->indexBy('id')
+                    ->orderBy('priority ASC')
+                    ->all();
     }
 }

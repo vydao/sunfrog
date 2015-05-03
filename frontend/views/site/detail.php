@@ -22,7 +22,9 @@ $url = Yii::$app->params['_url'];
 		<h4 class="related-product-text">Related Products</h4>
 		<?php if(!empty($related_products)){ ?>
 				<?php foreach($related_products as $key => $product){ ?>
+					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['detail/' . $product->id]); ?>" >
 					<img class="col-md-3 related-product" src="<?php echo Yii::$app->request->baseUrl; ?>/img/<?php echo $product->image ?>" border="0" />
+					</a>
 				<?php } ?>
 		<?php } ?>
 

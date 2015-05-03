@@ -1,6 +1,8 @@
 <?php
 namespace backend\controllers;
 
+set_time_limit(0);
+
 require('../../vendor/simple_html_dom.php');
 use Yii;
 use yii\filters\AccessControl;
@@ -24,6 +26,7 @@ class ProductsController extends \yii\web\Controller
 	    		'name' => '',
 	    		'description' => '',
 	    		'size'	=> '',
+                'price' => 0.00,
 	    		'details' => '',
 	    		'original_url' => '',
 	    		'created_ts' => date('Ymd')
@@ -60,6 +63,12 @@ class ProductsController extends \yii\web\Controller
 			if(!empty($details)){
 				$product_info['details'] = $details->outertext;
 			}
+
+            $price = $html->find('select#size option:first', 0); //Get Product size
+            if(!empty($price)){
+                $product_price = end(explode('$', $price->innertext));
+                $product_info['price'] = $product_price;
+            }
 
 			$description = $html->find('.storyBox', 0)->find('text', 2); //Get Product description
 			if(!empty($description)){
@@ -126,7 +135,7 @@ class ProductsController extends \yii\web\Controller
 						$product->image = $file->name;
     				}else{
                         $product->image = $org_img;
-    				}
+                    }
 
     				if($product->validate() && $product->save()){
     					Yii::$app->session->setFlash('success', 'Product has been saved.');

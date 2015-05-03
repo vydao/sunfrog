@@ -35,6 +35,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['category_id'], 'integer'],
+            [['price'], 'number'],
             [['name'], 'required'],
             [['description', 'size', 'details'], 'string'],
             [['created_ts', 'deteled_ts'], 'safe'],
@@ -54,6 +55,7 @@ class Product extends \yii\db\ActiveRecord
             'image' => 'Image',
             'description' => 'Description',
             'size' => 'Size',
+            'price' => 'Price',
             'details' => 'Details',
             'original_url' => 'Original Url',
             'created_ts' => 'Created Ts',

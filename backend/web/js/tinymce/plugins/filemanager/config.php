@@ -16,9 +16,9 @@ $root = rtrim($_SERVER['DOCUMENT_ROOT'],'/'); // don't touch this configuration
 //   |    |   |    |-   |- filemanager
 //   |    |   |    |-   |-      |- thumbs <- folder of thumbs [must have the write permission]
 
-$base_url='http://'.$_SERVER['SERVER_NAME'].'/'; //url base of site if you want only relative url leave empty
-$upload_dir = '/uploads/tinymce/'; // path from base_url to upload base dir
-$current_path = '../../../../../../uploads/tinymce/'; // relative path from filemanager folder to upload files folder
+$base_url='http://sunfrog.me/'; //url base of site if you want only relative url leave empty
+$upload_dir = '../../../../../../frontend/web/img/'; // path from base_url to upload base dir
+$current_path = '../../../../../../frontend/web/img/'; // relative path from filemanager folder to upload files folder
 
 $MaxSizeUpload=10; //Mb
 

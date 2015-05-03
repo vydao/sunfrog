@@ -6,12 +6,11 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
-return [	
+return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-	'name'=>'Sun Frog',
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',
@@ -30,26 +29,28 @@ return [
             'errorAction' => 'site/error',
         ],
         'assetManager' => [
-            'bundles' => [                
+            'bundles' => [
                 //'yii\bootstrap\BootstrapPluginAsset' => [
                     //'js'=>[]
                 //],
                 //'yii\bootstrap\BootstrapAsset' => [
                    // 'css' => [],
                 //],
-        
+
             ],
-        ],       
+        ],
         'urlManager'=> [
 	        'class'	=> 'yii\web\UrlManager',
 	        'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'enableStrictParsing' => false,            
+            'enableStrictParsing' => false,
 			'rules' => [
                 'home' => '/site/index',
-                'about' => '/site/about',                
+                'about' => '/site/about',
                 'contact' => '/site/contact',
-                'news/<name>-<id:\d+>'=> 'news/view',
+                'detail/<id:\d+>' => '/site/detail',
+                'category/<id:\d+>' => '/site/category',
+
 				'<controller:\w+>/<id:\d+>'	=> '<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'	=> '<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'	=> '<controller>/<action>',
