@@ -1,0 +1,1 @@
+ALTER TABLE `sunfrog`.`product` ADD COLUMN `price` DOUBLE NULL AFTER `size`; 
