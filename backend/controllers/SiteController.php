@@ -11,12 +11,8 @@ use yii\filters\VerbFilter;
  * Site controller
  */
 class SiteController extends Controller
-{
-    /**
-     * @inheritdoc
-     */
-    //public $layout = 'dashboard';
-     
+{    
+    public $layout = 'dashboard';
     public function behaviors()
     {
         return [
@@ -37,7 +33,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    //'logout' => ['post'],
                 ],
             ],
         ];
@@ -62,6 +58,7 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
+        
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -70,6 +67,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
+            $this->layout = 'main';
             return $this->render('login', [
                 'model' => $model,
             ]);
@@ -78,6 +76,7 @@ class SiteController extends Controller
 
     public function actionLogout()
     {
+        $this->layout = 'main';
         Yii::$app->user->logout();
 
         return $this->goHome();
