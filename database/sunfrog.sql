@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2015 at 06:28 PM
+-- Generation Time: May 04, 2015 at 05:25 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -30,7 +30,15 @@ CREATE TABLE IF NOT EXISTS `category` (
 `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `priority` int(11) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `priority`) VALUES
+(1, 'AAAAAAAAA', 1),
+(2, 'bbbbbbbb', 2);
 
 -- --------------------------------------------------------
 
@@ -66,10 +74,14 @@ INSERT INTO `config` (`id`, `content`, `title`, `description`, `keyword`, `com`)
 CREATE TABLE IF NOT EXISTS `news` (
 `id` int(11) NOT NULL,
   `title` text NOT NULL,
+  `description` text,
   `content` text NOT NULL,
+  `image` text,
   `meta_keyword` text,
   `meta_description` text,
   `meta_title` text,
+  `view_count` int(11) DEFAULT '0',
+  `featured` tinyint(1) DEFAULT '0',
   `updated_date` int(11) DEFAULT NULL,
   `created_date` int(11) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -78,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `title`, `content`, `meta_keyword`, `meta_description`, `meta_title`, `updated_date`, `created_date`) VALUES
-(1, 'sdgsd', '<p>gsdgsdgsgsdg</p>\r\n<p>sd</p>\r\n<p>gs</p>\r\n<p>dgs</p>', '', '', '', NULL, NULL);
+INSERT INTO `news` (`id`, `title`, `description`, `content`, `image`, `meta_keyword`, `meta_description`, `meta_title`, `view_count`, `featured`, `updated_date`, `created_date`) VALUES
+(1, 'zcvzxvzxv', '<p>zxvzxvzxvzxz afasf afa faf</p>', '<p>af a fasf asf asf asfafa</p>', '800a61a7f2a828ee1cab14a4d1b1da6c.jpg', 'as fasf', 'a fasf as', 'a fasfa', 0, 0, 1430094913, 1430094913);
 
 -- --------------------------------------------------------
 
@@ -200,7 +212,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `config`
 --
