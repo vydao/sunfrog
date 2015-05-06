@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2015 at 04:44 PM
+-- Generation Time: May 06, 2015 at 07:02 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -62,8 +62,29 @@ CREATE TABLE IF NOT EXISTS `config` (
 INSERT INTO `config` (`id`, `content`, `title`, `description`, `keyword`, `com`) VALUES
 (1, '<p>gioi thieu</p>\r\n<p>trai&nbsp;</p>\r\n<p>day</p>', 'gioi thieu', 'gioi thieu des', 'GIOI THIEU KEY', 'about'),
 (2, '<p>contact</p>\r\n<p>tai day</p>\r\n<p>day</p>', 'title contact', 'des contact', 'key contact', 'contact'),
-(3, '<p>We enjoy helping groups, individuals, business, non-profits, or anyone looking to make their event, business, or fund-raiser more profitable.</p>\r\n<p>SunFrog wholeale offers a complete apparel product line and a wide variety of color choices. Get started by contacting a sales representative of SunFrog today.</p>', NULL, NULL, NULL, 'footer'),
+(3, '<p><strong><span style="color: #ff0000;">Setting Footer tai day</span></strong></p>\r\n<p>We enjoy helping groups, individuals, business, non-profits, or anyone looking to make their event, business, or fund-raiser more profitable.</p>\r\n<p>SunFrog wholeale offers a complete apparel product line and a wide variety of color choices. Get started by contacting a sales representative of SunFrog today.</p>', NULL, NULL, NULL, 'footer'),
 (4, '<iframe width="100%" height="200" src="https://www.youtube.com/embed/NTFTXfXqfp4" frameborder="0" allowfullscreen></iframe>', NULL, NULL, NULL, 'video');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logo`
+--
+
+CREATE TABLE IF NOT EXISTS `logo` (
+`id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `com` char(50) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `logo`
+--
+
+INSERT INTO `logo` (`id`, `name`, `photo`, `com`) VALUES
+(1, 'Logo Banner', '834737b830b44bcad4f8e55d14c1fbed.png', 'logo'),
+(2, 'Slider', '3d8d7c161e9af2e95c95286c8ee6bd9e.jpg', 'slider');
 
 -- --------------------------------------------------------
 
@@ -181,6 +202,12 @@ ALTER TABLE `config`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `logo`
+--
+ALTER TABLE `logo`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
@@ -218,6 +245,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 ALTER TABLE `config`
 MODIFY `id` int(3) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `logo`
+--
+ALTER TABLE `logo`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `news`
 --
