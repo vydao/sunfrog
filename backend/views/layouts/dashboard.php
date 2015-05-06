@@ -60,6 +60,9 @@ AppAsset::register($this);
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['config']); ?>"><i class="fa fa-edit fa-fw"></i> Config</a>
                         </li>
+                        <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['logo']); ?>"><i class="fa fa-edit fa-fw"></i> Setting Logo</a>
+                        </li>
                     </ul>
                </div>
                 <!-- /.sidebar-collapse -->

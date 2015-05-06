@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\ContactForm;
 use common\models\Config;
+use common\models\Logo;
 
 use common\models\Product;
 use common\models\Category;
@@ -61,13 +62,14 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
         $products = Product::find()
                       ->select('id, image, name, original_url')
                       ->indexBy('id')
                       ->orderBy('created_ts DESC')
                       ->limit(40)
                       ->all();
-        return $this->render('index', ['products' => $products]);
+        return $this->render('index', ['products' => $products, 'slider' => $slider]);
     }
 
     public function actionContact()

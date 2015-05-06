@@ -34,7 +34,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	/*
+	
 	tinymce.init({
         selector: ".tinymce_tag textarea",
         theme: "modern",
@@ -53,5 +53,5 @@ $(document).ready(function(){
             {title: 'Test template 2', content: 'Test 2'}
         ]
     });
-    */
+    
 });

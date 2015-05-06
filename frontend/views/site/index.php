@@ -6,7 +6,7 @@ $this->title = 'Sunfrog Shirt';
 $url = Yii::$app->params['_url'];
 ?>
 <aside id='slideshow'>
-   	<a href=""><img src="<?php echo $url; ?>photos/slide.jpg" border="0" /></a>
+   	<img src="<?php echo $slider->imageUrl(); ?>" alt="<?php echo $slider->name; ?>" border="0" />
     <div class="clear"></div>
 </aside>
 

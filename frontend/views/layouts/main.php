@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use common\models\Config;
+use common\models\Logo;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -13,6 +14,8 @@ $url = Yii::$app->params['_url'];
 //Default load
 $footer = Config::find()->select('content')->where('com="footer"')->one();
 $video = Config::find()->select('content')->where('com="video"')->one();
+
+$banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -34,7 +37,7 @@ $video = Config::find()->select('content')->where('com="video"')->one();
     <header>
     	<div class="container">
             <div id='banner'>
-                <a href="<?php echo $url; ?>home"><img src="<?php echo $url; ?>photos/logo.png" alt="Insert Logo Here" width="250" height="90" border="0" /></a>
+                <a href="<?php echo $url; ?>home"><img src="<?php echo $banner->imageUrl(); ?>" alt="<?php echo $banner->name; ?>" width="250" height="90" border="0" /></a>
             </div>
             <div id='right_banner'>
                 <ul id='nav_header'>
