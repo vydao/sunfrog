@@ -64,7 +64,7 @@ class ProductsController extends \yii\web\Controller
 				$product_info['details'] = $details->outertext;
 			}
 
-            $price = $html->find('select#size option:first', 0); //Get Product size
+            $price = $html->find('option', 1); //Get Product size
             if(!empty($price)){
                 $product_price = end(explode('$', $price->innertext));
                 $product_info['price'] = $product_price;

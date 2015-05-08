@@ -9,7 +9,7 @@
             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['detail/' . $product->id]) ?>" class="product_img">
             <img src="<?php echo Yii::$app->request->baseUrl . "/img/{$product->image}"; ?>" border="0" /></a>
             <h2><a href="" class="product_name"><?php echo $product->name; ?></a></h2>
-            <h3 class="product_price">$19.99</h3>
+            <h3 class="product_price">$<?php echo (!empty($product->name)) ? number_format($product->price,2,",",".") : 0 ?></h3>
         </div>
         <?php if(4 == $i){
                 $i = 0;

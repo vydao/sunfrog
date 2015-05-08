@@ -454,6 +454,18 @@ a {
 	font-size: 18px;
 }
 .related-product:hover{
-	border: 1px solid #12c3ee;
+	border: 3px solid #12c3ee;
+	cursor: pointer;
+}
+.also-like-product{
+	width: 45%;
+	border: 3px solid #ebebeb;
+	padding: 0px 10px;
+	margin-right: 0px;
+	margin-top: 2px;
+	max-height: 90px;
+}
+.also-like-product:hover{
+	border: 3px solid #12c3ee;
 	cursor: pointer;
 }
