@@ -97,7 +97,7 @@ class News extends \yii\db\ActiveRecord
     			$this->image = UploadedFile::getInstance($this,'image');
     			if( $this->image )
     			{
-	    			$img_dir = Yii::getAlias('@frontend') . '/web/uploads/news/';
+	    			$img_dir = Yii::getAlias('@frontend') . '/../uploads/news/';
 	    			$file_link = md5(time()) . '.' . $this->image->extension;
 	    			$save_to = $img_dir . $file_link;
 	    			$this->image->saveAs($save_to);
@@ -127,6 +127,6 @@ class News extends \yii\db\ActiveRecord
     
     public function imageUrl()
     {
-    	return Yii::$app->params['site_url'] . '/uploads/news/' . $this->image;
+    	return Yii::$app->params['site_url'] . 'uploads/news/' . $this->image;
     }
 }

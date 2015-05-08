@@ -6,10 +6,10 @@ return [
     'frontendUrl' => 'http://sunfrog.demo',
     
     //Param used by Quan
-    '_url' => 'http://sunfrog.me/',
-    '_website' => 'sunfrog.me',
-	'site_url' => 'http://sunfrog.me/',
-	'admin_site_url' => 'http://admin.sunfrog.me/',
+    '_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/',
+    '_website' => $_SERVER['SERVER_NAME'],
+	'site_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/',
+	'admin_site_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/admin/',
     //'site_url' => 'http://raovat68.tk/frontend/web/',
 	//'admin_site_url' => 'http://raovat68.tk/frontend/web/'
     

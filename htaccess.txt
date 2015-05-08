@@ -1,0 +1,14 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{SERVER_NAME} =admin.raovat68.tk
+RewriteRule . /backend/web/index.php
+
+# otherwise forward it to index.php
+RewriteCond %{SERVER_NAME} =raovat68.tk
+RewriteRule . /frontend/web/index.php
+

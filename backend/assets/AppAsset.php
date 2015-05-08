@@ -16,7 +16,7 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $baseUrl = '@web/../backend/web/';
     public $css = [
         'css/site.css',
         'css/sb-admin-2.css',
