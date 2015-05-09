@@ -3,7 +3,7 @@ return [
     'adminEmail' => 'admin@example.com',
     'supportEmail' => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,
-    'frontendUrl' => 'http://sunfrog.demo',
+    'frontendUrl' => 'http://' . $_SERVER['SERVER_NAME'] . '/frontend/web/',
     
     //Param used by Quan
     '_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/',

@@ -6,4 +6,7 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
     ],
+    'aliases' => [
+        'uploadPath' => dirname(dirname(__DIR__)) . '/uploads',
+    ],
 ];

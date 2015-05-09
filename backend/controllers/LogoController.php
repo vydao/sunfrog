@@ -15,7 +15,6 @@ use yii\filters\VerbFilter;
 class LogoController extends Controller
 {
     public $layout = 'dashboard';
-    public $enableCsrfValidation = false;
     public function behaviors()
     {
         return [
