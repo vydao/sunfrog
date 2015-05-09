@@ -71,7 +71,7 @@ class Logo extends \yii\db\ActiveRecord
 			$this_photo = UploadedFile::getInstance($this,'photo');              
 			if( $this_photo )
 			{
-    			$img_dir = Yii::getAlias('@frontend') . '/../uploads/logo/';
+    			$img_dir = '../uploads/logo/';
     			$file_link = md5(time()) . '.' . $this_photo->extension;
     			$save_to = $img_dir . $file_link;
     			$this->photo->saveAs($save_to);
