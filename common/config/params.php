@@ -9,8 +9,6 @@ return [
     '_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/',
     '_website' => $_SERVER['SERVER_NAME'],
 	'site_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/',
-	'admin_site_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/admin/',
-    //'site_url' => 'http://raovat68.tk/frontend/web/',
-	//'admin_site_url' => 'http://raovat68.tk/frontend/web/'
+	'admin_site_url' => 'http://' . $_SERVER['SERVER_NAME'] . '/admin/',    
     
 ];
