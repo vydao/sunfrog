@@ -2,18 +2,13 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\web\Controller;
 use frontend\models\ContactForm;
 use common\models\Config;
 use common\models\Logo;
 
 use common\models\Product;
 use common\models\Category;
-
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * Site controller
@@ -26,24 +21,7 @@ class SiteController extends Controller
     public function init(){
         Yii::$app->params['left_menu'] = $this->_getLeftMenu();
     }
-
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index', 'about', 'contact', 'error'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'about', 'contact', 'error'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
+    
     /**
      * @inheritdoc
      */
