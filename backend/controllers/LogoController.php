@@ -15,13 +15,14 @@ use yii\filters\VerbFilter;
 class LogoController extends Controller
 {
     public $layout = 'dashboard';
+    public $enableCsrfValidation = false;
     public function behaviors()
     {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => ['post'],                    
                 ],
             ],
         ];
@@ -52,7 +53,7 @@ class LogoController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {            
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
