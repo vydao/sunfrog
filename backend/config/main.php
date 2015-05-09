@@ -9,10 +9,21 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    'homeUrl' => '/admin',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => ['127.0.0.1'] // adjust this to your needs
+        ],
+    ],
     'components' => [
+        'request' => [
+             'baseUrl' => '/admin',
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'G6ummRx71cgZi0r5daK1zJHahFCkXTWd',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -25,7 +36,7 @@ return [
                     'levels' => ['error', 'warning'],
                 ],
             ],
-        ],
+        ],        
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

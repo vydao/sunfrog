@@ -18,9 +18,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-    
-    
+    <?php $this->head() ?>        
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -74,7 +72,7 @@ AppAsset::register($this);
    </div>
     </div>
 <?php $this->endBody() ?>
-<script type="text/javascript" src="<?php echo Yii::$app->request->baseUrl ?>/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="<?php echo Yii::$app->params['admin_site_url']; ?>/../backend/web/js/tinymce/tinymce.min.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -3,7 +3,7 @@ namespace backend\controllers;
 
 set_time_limit(0);
 
-require('../../vendor/simple_html_dom.php');
+require('../vendor/simple_html_dom.php');
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
