@@ -98,6 +98,6 @@ class Logo extends \yii\db\ActiveRecord
     
     public function imageUrl()
     {
-    	return Yii::getAlias('@uploadPath') . '/logo/' . $this->photo;
+    	return Yii::$app->params['site_url'] . 'uploads/logo/' . $this->photo;
     }
 }
