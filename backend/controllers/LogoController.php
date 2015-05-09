@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use common\models\Logo;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -14,16 +15,20 @@ use yii\filters\VerbFilter;
  */
 class LogoController extends Controller
 {
-    public $layout = 'dashboard';
+    public $layout = 'dashboard';    
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],                    
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['update', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
-            ],
+            ],            
         ];
     }
 
@@ -59,19 +64,6 @@ class LogoController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Deletes an existing Logo model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

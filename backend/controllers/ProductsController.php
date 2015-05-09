@@ -16,6 +16,22 @@ use common\models\Category;
 class ProductsController extends \yii\web\Controller
 {
 	public $layout = 'dashboard';
+    
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['view', 'edit', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],            
+        ];
+    }
 
     public function actionIndex()
     {

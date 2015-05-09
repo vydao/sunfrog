@@ -32,7 +32,7 @@ AppAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Sunfrog Admin</a>
+                <a class="navbar-brand" href="<?=Yii::$app->params['site_url']?>">Sunfrog Admin</a>
             </div>
             <!-- /.navbar-header -->
              <ul class="nav navbar-top-links navbar-right">
