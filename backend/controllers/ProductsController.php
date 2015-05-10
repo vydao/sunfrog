@@ -24,7 +24,7 @@ class ProductsController extends \yii\web\Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view', 'edit', 'index'],
+                        'actions' => ['view', 'edit', 'index', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -171,6 +171,20 @@ class ProductsController extends \yii\web\Controller
     	}else{
     		throw new Exception("Error Processing Request", 1);
     	}
+    }
+
+    public function actionDelete(){
+        $product_id = Yii::$app->request->get('id');
+        if(!empty($product_id)){
+            $product = Product::find()->where('id=:id', [':id' => $product_id])->one();
+            if($product && $product->delete()){
+                return $this->redirect(['index']);
+            }else{
+                throw new Exception("Page not found", 1);
+            }
+        }else{
+            throw new Exception("Error Processing Request", 1);
+        }
     }
 
 }

@@ -54,4 +54,12 @@ $(document).ready(function(){
         ]
     });
     
+    $("#delete-prod").click(function(){
+        var cfr = confirm("Are you sure want to delete this product?");
+        if(true == cfr){
+            return true;
+        }
+        return false;
+    });
+    
 });
