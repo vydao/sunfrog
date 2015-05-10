@@ -44,6 +44,7 @@ $this->title = 'Products Details';
 
 		<div class="form-group">
 			<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products']); ?>" class="btn btn-default">Back</a>
+			<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products/delete', 'id' => $model->id]); ?>" id="delete-prod" class="btn btn-danger pull-right">Delete</a>
 			<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products/edit', 'id' => $model->id]); ?>" class="btn btn-primary pull-right">Edit</a>
 		</div>
 	</div>
