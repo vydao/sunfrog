@@ -52,6 +52,9 @@ AppAsset::register($this);
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['news']); ?>"><i class="fa fa-edit fa-fw"></i> News</a>
                         </li>
+                         <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['support']); ?>"><i class="fa fa-edit fa-fw"></i> Support</a>
+                        </li>
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['settings']); ?>"><i class="fa fa-edit fa-fw"></i> Settings</a>
                         </li>
@@ -72,7 +75,6 @@ AppAsset::register($this);
    </div>
     </div>
 <?php $this->endBody() ?>
-<script type="text/javascript" src="<?php echo Yii::$app->params['admin_site_url']; ?>/../backend/web/js/tinymce/tinymce.min.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

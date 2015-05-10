@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	tinymce.init({
-		selector:'#news-content',
+		selector:'#news-content,#support-content',
 		theme: "modern",
 	    height: 400,
 		setup: function(editor) {
@@ -24,7 +24,7 @@ $(document).ready(function(){
 	});
 	
 	tinymce.init({
-		selector:'#news-description',
+		selector:'#news-description,#support-description',
 		theme: "modern",
 	    height: 150,
 		setup: function(editor) {

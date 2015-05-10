@@ -43,8 +43,8 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
                 <ul id='nav_header'>
                     <li><a href="<?php echo $url; ?>home">Home</a></li>
                     <li><a href="<?php echo $url; ?>about">About Us</a></li>
-                    <li><a href="<?php echo $url; ?>">News &amp; Event</a></li>
-                    <li><a href="<?php echo $url; ?>">Support</a></li>
+                    <li><a href="<?php echo $url; ?>news">News &amp; Event</a></li>
+                    <li><a href="<?php echo $url; ?>support">Support</a></li>
                     <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
                 <div id='search_header'>
@@ -104,7 +104,8 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
             	<ul class="nav_footer">
                     <li><a href="<?php echo $url; ?>home">Home</a></li>
                     <li><a href="<?php echo $url; ?>about">About Us</a></li>
-                    <li><a href="">News &amp; Event</a></li>
+                    <li><a href="<?php echo $url; ?>news">News &amp; Event</a></li>
+					<li><a href="<?php echo $url; ?>support">Support</a></li>
                     <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
             </div>
