@@ -53,7 +53,7 @@ class ProductsController extends \yii\web\Controller
                 $product_info['category_id'] = $category;
             }
 
-    		$imgdir = Yii::getAlias('@frontend/web/img/');
+    		$imgdir = Yii::getAlias('@uploadPath') . '/products/';
     		$url = trim(Yii::$app->request->post('product_url'));
 
     		$html = file_get_html($url);
@@ -142,7 +142,7 @@ class ProductsController extends \yii\web\Controller
     			if(Yii::$app->request->post('Product')){
 
                     $org_img = $product->image;
-					$imgdir = Yii::getAlias('@frontend/web/img/');
+					$imgdir = Yii::getAlias('@uploadPath') . '/products/';
     				$product->attributes = Yii::$app->request->post('Product');
 
     				$file = UploadedFile::getInstanceByName("Product[image]");

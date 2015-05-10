@@ -48,9 +48,9 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
                     <li><a href="<?php echo $url; ?>contact">Contact Us</a></li>
                 </ul>
                 <div id='search_header'>
-                    <form action="" method="post">
-                        <input type="text" name="Search[name]" placeholder="Search ..." />
-                        <input type="submit" name="Search[btnSend]" value="Search" />
+                    <form action="/home" method="get">
+                        <input type="text" name="SEARCH" placeholder="Search ..." />
+                        <input type="submit" value="Search" />
                     </form>
                 </div>
                 <div class="clear"></div>

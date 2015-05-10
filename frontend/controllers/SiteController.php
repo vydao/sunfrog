@@ -8,6 +8,7 @@ use common\models\Config;
 use common\models\Logo;
 
 use common\models\Product;
+use common\models\ProductSearch;
 use common\models\Category;
 
 /**
@@ -21,7 +22,7 @@ class SiteController extends Controller
     public function init(){
         Yii::$app->params['left_menu'] = $this->_getLeftMenu();
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -41,12 +42,20 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
-        $products = Product::find()
-                      ->select('id, image, name, original_url')
+
+        $search_params = Yii::$app->request->get('SEARCH');
+        if(!empty($search_params)){
+            $searchModel = new ProductSearch();
+            $products = $searchModel->search(mysql_real_escape_string($search_params));
+
+        }else{
+            $products = Product::find()
+                      ->select('id, image, name, original_url, price')
                       ->indexBy('id')
                       ->orderBy('created_ts DESC')
                       ->limit(40)
                       ->all();
+        }
         return $this->render('index', ['products' => $products, 'slider' => $slider]);
     }
 
@@ -86,7 +95,7 @@ class SiteController extends Controller
             $product = Product::find()->where('id=:id', [':id' => $product_id])->one();
             if($product){
                 $related_products = Product::find()
-                    ->select('id, image')
+                    ->select('id, image, price, original_url')
                     ->where('category_id=:id', [':id' => $product->category_id])
                     ->orderBy('rand()')
                     ->limit(8)
