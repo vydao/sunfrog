@@ -79,12 +79,8 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
                 <h2 style="margin-top:15px;"><i class="fa fa-send"></i>Hot News</h2>
                 <div class="left_info">
                 	<ul class="news_nav">
-                    	<li><i class="fa fa-edit"></i><a href="">How much are hoodies?</a></li>
-                        <li><i class="fa fa-edit"></i><a href="">How much are t-shirts?</a></li>
-                        <li><i class="fa fa-edit"></i><a href="">How much does it cost?</a></li>
-                        <li><i class="fa fa-edit"></i><a href="">You charged me more!</a></li>
-                        <li><i class="fa fa-edit"></i><a href="">You made a mistake on my order.</a></li>
-                        <li><i class="fa fa-edit"></i><a href="">(Tin tức nổi bật ở đây)</a></li>
+                    	<?=Yii::$app->params['top_news']?>
+                        <li><i class="fa fa-edit"></i><a href="<?php echo $url; ?>news">(Tin tức nổi bật ở đây)</a></li>
                     </ul>
                 </div>
             </div>
@@ -112,10 +108,8 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
             <div class="col_footer">
             	<h2>SUPPORT</h2>
             	<ul class="nav_footer">
-                    <li><a href="">How to use?</a></li>
-                    <li><a href="">How to buy?</a></li>
-                    <li><a href="">How to payment?</a></li>
-                    <li><a href="">(Các bài hỗ trợ nổi bật)</a></li>
+                    <?=Yii::$app->params['top_supports']?>
+                    <li><a href="<?php echo $url; ?>support">(Các bài hỗ trợ nổi bật)</a></li>
                 </ul>
             </div>
             <div class="col_right_footer">

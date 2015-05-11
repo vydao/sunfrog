@@ -7,6 +7,8 @@ use frontend\models\ContactForm;
 use common\models\Config;
 use common\models\Logo;
 
+use app\components\CController;
+
 use common\models\Product;
 use common\models\ProductSearch;
 use common\models\Category;
@@ -14,16 +16,9 @@ use common\models\Category;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends CController
 {
-    /**
-     * @inheritdoc
-     */
-    public function init(){
-        Yii::$app->params['left_menu'] = $this->_getLeftMenu();
-    }
-
-    /**
+	/**
      * @inheritdoc
      */
     public function actions()
@@ -121,12 +116,5 @@ class SiteController extends Controller
         }else{
             throw new Exception("Error Processing Request", 1);
         }
-    }
-
-    private function _getLeftMenu(){
-         return Category::find()
-                    ->indexBy('id')
-                    ->orderBy('priority ASC')
-                    ->all();
     }
 }
