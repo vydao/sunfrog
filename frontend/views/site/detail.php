@@ -15,7 +15,7 @@ $url = Yii::$app->params['_url'];
 		
 		<div class="product_space" style="width:100%"></div>
 		<div style="clear:both;overflow:hidden">
-		<button onclick="location.href='<?php echo $model->original_url; ?>'" class="button orangeb leftd large view-more">View Details</button>
+		<button onclick="location.href='<?php echo $model->original_url.'?'.$setting_id; ?>'" class="button orangeb leftd large view-more">View Details</button>
 		</div>
 		<h4 class="size-details">T–Shirt Sizing and Details</h4>
 		<div><?php echo $model->size; ?></div>
@@ -40,6 +40,6 @@ $url = Yii::$app->params['_url'];
 					</a>
 				<?php } ?>
 		<?php } ?>
-		<button onclick="location.href='<?php echo $model->original_url; ?>'" style="width:100%;margin-top:20px;" class="button orangeb leftd large view-more">Buy Now</button>
+		<button onclick="location.href='<?php echo $model->original_url.'?'.$setting_id; ?>'" style="width:100%;margin-top:20px;" class="button orangeb leftd large view-more">Buy Now</button>
 	</div>
 </div>

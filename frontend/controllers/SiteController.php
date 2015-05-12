@@ -12,6 +12,7 @@ use app\components\CController;
 use common\models\Product;
 use common\models\ProductSearch;
 use common\models\Category;
+use common\models\Setting;
 
 /**
  * Site controller
@@ -95,7 +96,8 @@ class SiteController extends CController
                     ->orderBy('rand()')
                     ->limit(8)
                     ->all();
-                return $this->render('detail', ['model' => $product, 'related_products' => $related_products]);
+                $setting_id = Setting::find()->select('name')->where('active = 1')->one();
+                return $this->render('detail', ['model' => $product, 'related_products' => $related_products, 'setting_id' => $setting_id->name]);
             }else{
                 throw new Exception("Page not found", 1);
             }

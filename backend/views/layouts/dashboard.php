@@ -56,7 +56,7 @@ AppAsset::register($this);
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['support']); ?>"><i class="fa fa-edit fa-fw"></i> Support</a>
                         </li>
                         <li>
-                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['settings']); ?>"><i class="fa fa-edit fa-fw"></i> Settings</a>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['setting']); ?>"><i class="fa fa-edit fa-fw"></i> Setting ID</a>
                         </li>
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['config']); ?>"><i class="fa fa-edit fa-fw"></i> Config</a>

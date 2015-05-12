@@ -7,10 +7,9 @@ use Yii;
 /**
  * This is the model class for table "setting".
  *
- * @property integer $id
+ * @property string $id
  * @property string $name
- * @property string $value
- * @property string $deleted_ts
+ * @property integer $active
  */
 class Setting extends \yii\db\ActiveRecord
 {
@@ -29,8 +28,8 @@ class Setting extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['deleted_ts'], 'safe'],
-            [['name', 'value'], 'string', 'max' => 255]
+            [['active'], 'integer'],
+            [['name'], 'string', 'max' => 255]
         ];
     }
 
@@ -42,8 +41,7 @@ class Setting extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'value' => 'Value',
-            'deleted_ts' => 'Deleted Ts',
+            'active' => 'Active',
         ];
     }
 }
