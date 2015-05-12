@@ -44,20 +44,21 @@ AppAsset::register($this);
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products']); ?>"><i class="fa fa-dashboard fa-fw"></i> Products</a>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['setting']); ?>"><i class="fa fa-edit fa-fw"></i> Setting ID</a>
                         </li>
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['categories']); ?>"><i class="fa fa-table fa-fw"></i> Categories</a>
                         </li>
                         <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products']); ?>"><i class="fa fa-dashboard fa-fw"></i> Products</a>
+                        </li>
+                        
+                        <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['news']); ?>"><i class="fa fa-edit fa-fw"></i> News</a>
                         </li>
                          <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['support']); ?>"><i class="fa fa-edit fa-fw"></i> Support</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['setting']); ?>"><i class="fa fa-edit fa-fw"></i> Setting ID</a>
-                        </li>
+                        </li>                        
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['config']); ?>"><i class="fa fa-edit fa-fw"></i> Config</a>
                         </li>
