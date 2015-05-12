@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	tinymce.init({
-		selector:'#news-content',
+		selector:'#news-content,#support-content',
 		theme: "modern",
 	    height: 400,
 		setup: function(editor) {
@@ -24,7 +24,7 @@ $(document).ready(function(){
 	});
 	
 	tinymce.init({
-		selector:'#news-description',
+		selector:'#news-description,#support-description',
 		theme: "modern",
 	    height: 150,
 		setup: function(editor) {
@@ -52,6 +52,14 @@ $(document).ready(function(){
             {title: 'Test template 1', content: 'Test 1'},
             {title: 'Test template 2', content: 'Test 2'}
         ]
+    });
+    
+    $("#delete-prod").click(function(){
+        var cfr = confirm("Are you sure want to delete this product?");
+        if(true == cfr){
+            return true;
+        }
+        return false;
     });
     
 });

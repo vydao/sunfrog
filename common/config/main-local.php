@@ -3,9 +3,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=zadmin_sunfrog',
-            'username' => 'sunfrog',
-            'password' => 'mabypumav',
+            'dsn' => 'mysql:host=localhost;dbname=zadmin_sunfrogshirt',
+            'username' => 'sunfrogshirt',
+            'password' => '7utanehy2',
             'charset' => 'utf8',
         ],
         'mailer' => [

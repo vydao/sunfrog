@@ -18,9 +18,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-    
-    
+    <?php $this->head() ?>        
 </head>
 <body>
     <?php $this->beginBody() ?>
@@ -34,7 +32,7 @@ AppAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Sunfrog Admin</a>
+                <a class="navbar-brand" href="<?=Yii::$app->params['site_url']?>admin">Sunfrog Admin</a>
             </div>
             <!-- /.navbar-header -->
              <ul class="nav navbar-top-links navbar-right">
@@ -53,6 +51,9 @@ AppAsset::register($this);
                         </li>
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['news']); ?>"><i class="fa fa-edit fa-fw"></i> News</a>
+                        </li>
+                         <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['support']); ?>"><i class="fa fa-edit fa-fw"></i> Support</a>
                         </li>
                         <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['settings']); ?>"><i class="fa fa-edit fa-fw"></i> Settings</a>
@@ -74,7 +75,6 @@ AppAsset::register($this);
    </div>
     </div>
 <?php $this->endBody() ?>
-<script type="text/javascript" src="<?php echo Yii::$app->request->baseUrl ?>/js/tinymce/tinymce.min.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

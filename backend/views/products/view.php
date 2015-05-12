@@ -24,7 +24,7 @@ $this->title = 'Products Details';
 
 		<div class="form-group">
 			<label class="label-char">Image</label>
-			<div><img class="product-img" src="<?php echo (!empty($model->image)) ? Yii::$app->params['frontendUrl'] . '/img/' . $model->image : ''; ?>" alt="image" /></div>
+			<div><img class="product-img" src="<?php echo (!empty($model->image)) ? Yii::$app->params['frontendUrl'] . '/uploads/products/' . $model->image : ''; ?>" alt="image" /></div>
 		</div>
 
 		<div class="form-group">
@@ -44,6 +44,7 @@ $this->title = 'Products Details';
 
 		<div class="form-group">
 			<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products']); ?>" class="btn btn-default">Back</a>
+			<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products/delete', 'id' => $model->id]); ?>" id="delete-prod" class="btn btn-danger pull-right">Delete</a>
 			<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products/edit', 'id' => $model->id]); ?>" class="btn btn-primary pull-right">Edit</a>
 		</div>
 	</div>

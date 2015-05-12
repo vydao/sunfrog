@@ -3,7 +3,7 @@ namespace backend\controllers;
 
 set_time_limit(0);
 
-require('../../vendor/simple_html_dom.php');
+require('../vendor/simple_html_dom.php');
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -16,6 +16,22 @@ use common\models\Category;
 class ProductsController extends \yii\web\Controller
 {
 	public $layout = 'dashboard';
+    
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['view', 'edit', 'index', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],            
+        ];
+    }
 
     public function actionIndex()
     {
@@ -37,7 +53,7 @@ class ProductsController extends \yii\web\Controller
                 $product_info['category_id'] = $category;
             }
 
-    		$imgdir = Yii::getAlias('@frontend/web/img/');
+    		$imgdir = Yii::getAlias('@uploadPath') . '/products/';
     		$url = trim(Yii::$app->request->post('product_url'));
 
     		$html = file_get_html($url);
@@ -126,7 +142,7 @@ class ProductsController extends \yii\web\Controller
     			if(Yii::$app->request->post('Product')){
 
                     $org_img = $product->image;
-					$imgdir = Yii::getAlias('@frontend/web/img/');
+					$imgdir = Yii::getAlias('@uploadPath') . '/products/';
     				$product->attributes = Yii::$app->request->post('Product');
 
     				$file = UploadedFile::getInstanceByName("Product[image]");
@@ -155,6 +171,20 @@ class ProductsController extends \yii\web\Controller
     	}else{
     		throw new Exception("Error Processing Request", 1);
     	}
+    }
+
+    public function actionDelete(){
+        $product_id = Yii::$app->request->get('id');
+        if(!empty($product_id)){
+            $product = Product::find()->where('id=:id', [':id' => $product_id])->one();
+            if($product && $product->delete()){
+                return $this->redirect(['index']);
+            }else{
+                throw new Exception("Page not found", 1);
+            }
+        }else{
+            throw new Exception("Error Processing Request", 1);
+        }
     }
 
 }

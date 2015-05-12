@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use common\models\Config;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -15,6 +16,22 @@ use yii\filters\VerbFilter;
 class ConfigController extends Controller
 {    
     public $layout = 'dashboard';
+    
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['update', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],            
+        ];
+    }
     
     /**
      * Lists all Config models.

@@ -3,32 +3,21 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
-use common\models\Category;
-use app\models\CategorySearch;
+use common\models\Support;
+use common\models\SupportSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CategoriesController implements the CRUD actions for Category model.
+ * SupportController implements the CRUD actions for Support model.
  */
-class CategoriesController extends Controller
+class SupportController extends Controller
 {
-    public $layout = 'dashboard';
+	public $layout = 'dashboard';
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['update', 'view', 'create', 'delete', 'index'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -39,12 +28,12 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Lists all Category models.
+     * Lists all Support models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearch();
+        $searchModel = new SupportSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -54,7 +43,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Displays a single Category model.
+     * Displays a single Support model.
      * @param integer $id
      * @return mixed
      */
@@ -66,13 +55,13 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Creates a new Category model.
+     * Creates a new Support model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new Support();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -84,7 +73,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Updates an existing Category model.
+     * Updates an existing Support model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -103,7 +92,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Deletes an existing Category model.
+     * Deletes an existing Support model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,15 +105,15 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Finds the Category model based on its primary key value.
+     * Finds the Support model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Category the loaded model
+     * @return Support the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = Support::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

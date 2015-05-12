@@ -2,49 +2,23 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\web\Controller;
 use frontend\models\ContactForm;
 use common\models\Config;
 use common\models\Logo;
 
-use common\models\Product;
-use common\models\Category;
+use app\components\CController;
 
-use yii\base\InvalidParamException;
-use yii\web\BadRequestHttpException;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+use common\models\Product;
+use common\models\ProductSearch;
+use common\models\Category;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends CController
 {
-    /**
-     * @inheritdoc
-     */
-    public function init(){
-        Yii::$app->params['left_menu'] = $this->_getLeftMenu();
-    }
-
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index', 'about', 'contact', 'error'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'about', 'contact', 'error'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
-    /**
+	/**
      * @inheritdoc
      */
     public function actions()
@@ -63,12 +37,20 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
-        $products = Product::find()
-                      ->select('id, image, name, original_url')
+
+        $search_params = Yii::$app->request->get('SEARCH');
+        if(!empty($search_params)){
+            $searchModel = new ProductSearch();
+            $products = $searchModel->search(mysql_real_escape_string($search_params));
+
+        }else{
+            $products = Product::find()
+                      ->select('id, image, name, original_url, price')
                       ->indexBy('id')
                       ->orderBy('created_ts DESC')
                       ->limit(40)
                       ->all();
+        }
         return $this->render('index', ['products' => $products, 'slider' => $slider]);
     }
 
@@ -108,7 +90,7 @@ class SiteController extends Controller
             $product = Product::find()->where('id=:id', [':id' => $product_id])->one();
             if($product){
                 $related_products = Product::find()
-                    ->select('id, image')
+                    ->select('id, image, price, original_url')
                     ->where('category_id=:id', [':id' => $product->category_id])
                     ->orderBy('rand()')
                     ->limit(8)
@@ -134,12 +116,5 @@ class SiteController extends Controller
         }else{
             throw new Exception("Error Processing Request", 1);
         }
-    }
-
-    private function _getLeftMenu(){
-         return Category::find()
-                    ->indexBy('id')
-                    ->orderBy('priority ASC')
-                    ->all();
     }
 }

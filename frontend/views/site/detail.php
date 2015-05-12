@@ -8,7 +8,7 @@ $url = Yii::$app->params['_url'];
 	<div class="col-md-8">
 		<h3><?php echo $model->name; ?></h3>
 		<a target="_blank" href="<?php echo $model->original_url; ?>">
-		<img class="product-detail-image" src="<?php echo Yii::$app->request->baseUrl; ?>/img/<?php echo $model->image ?>" border="0" />
+		<img class="product-detail-image" src="<?php echo Yii::$app->request->baseUrl; ?>/uploads/products/<?php echo $model->image ?>" border="0" />
 		</a>
 		<p class="product-name"><?php echo $model->name; ?></p>
 		<p class="text-desciption"><?php echo ($model->description) ? $model->description : ''; ?></p>
@@ -25,7 +25,7 @@ $url = Yii::$app->params['_url'];
 		<?php if(!empty($related_products)){ ?>
 				<?php foreach($related_products as $key => $product){ ?>
 					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['detail/' . $product->id]); ?>" >
-					<img class="col-md-3 related-product" src="<?php echo Yii::$app->request->baseUrl; ?>/img/<?php echo $product->image ?>" border="0" />
+					<img class="col-md-3 related-product" src="<?php echo Yii::$app->request->baseUrl; ?>/uploads/products/<?php echo $product->image ?>" border="0" />
 					</a>
 				<?php } ?>
 		<?php } ?>
@@ -36,9 +36,10 @@ $url = Yii::$app->params['_url'];
 		<?php if(!empty($related_products)){ ?>
 				<?php foreach($related_products as $key => $product){ ?>
 					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['detail/' . $product->id]); ?>" >
-					<img class="also-like-product" src="<?php echo Yii::$app->request->baseUrl; ?>/img/<?php echo $product->image ?>" border="0" />
+					<img class="also-like-product" src="<?php echo Yii::$app->request->baseUrl; ?>/uploads/products/<?php echo $product->image ?>" border="0" />
 					</a>
 				<?php } ?>
 		<?php } ?>
+		<button onclick="location.href='<?php echo $model->original_url; ?>'" style="width:100%;margin-top:20px;" class="button orangeb leftd large view-more">Buy Now</button>
 	</div>
 </div>

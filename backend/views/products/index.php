@@ -35,7 +35,7 @@ $this->title = 'Manage Products';
 			<?php foreach($products as $key => $product){ ?>
 					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products/view/' . $product->id]); ?>">
 						<div class="col-md-2">
-							<img width="100%" src="<?php echo Yii::$app->params['frontendUrl'] . '/img/' . $product->image; ?>"/>
+							<img width="100%" src="<?php echo Yii::$app->params['frontendUrl'] . '/uploads/products/' . $product->image; ?>"/>
 							<span><?php echo $product->name; ?></span>
 						</div>
 					</a>
