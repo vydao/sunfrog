@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
  */
 class SettingController extends Controller
 {
+    public $layout = 'dashboard';
     public function behaviors()
     {
         return [
