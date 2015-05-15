@@ -42,7 +42,8 @@ class SiteController extends CController
         $search_params = Yii::$app->request->get('SEARCH');
         if(!empty($search_params)){
             $searchModel = new ProductSearch();
-            $products = $searchModel->search(mysql_real_escape_string($search_params));
+            $search_params = strip_tags($search_params);
+            $products = $searchModel->search($search_params);
 
         }else{
             $products = Product::find()
