@@ -80,7 +80,6 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
                 <div class="left_info">
                 	<ul class="news_nav">
                     	<?=Yii::$app->params['top_news']?>
-                        <li><i class="fa fa-edit"></i><a href="<?php echo $url; ?>news">(Tin tức nổi bật ở đây)</a></li>
                     </ul>
                 </div>
             </div>
@@ -109,7 +108,6 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
             	<h2>SUPPORT</h2>
             	<ul class="nav_footer">
                     <?=Yii::$app->params['top_supports']?>
-                    <li><a href="<?php echo $url; ?>support">(Các bài hỗ trợ nổi bật)</a></li>
                 </ul>
             </div>
             <div class="col_right_footer">
