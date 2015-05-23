@@ -10,7 +10,7 @@ $this->title = 'Manage Products';
 		<div class="col-xs-12 col-sm-9 col-md-6">
 			<div class="form-group">
 				<label class="label-char"> Product URL</label>
-				<?= Html::textInput('product_url', '', ['class' => 'form-control']) ?>
+				<?= Html::textArea('product_url', '', ['class' => 'form-control', 'rows' => 25]) ?>
 			</div>
 			<div class="form-group">
 				<label class="label-char"> Category</label>
@@ -35,8 +35,8 @@ $this->title = 'Manage Products';
 			<?php foreach($products as $key => $product){ ?>
 					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products/view/' . $product->id]); ?>">
 						<div class="col-md-2">
-							<img width="100%" src="<?php echo Yii::$app->params['frontendUrl'] . '/uploads/products/' . $product->image; ?>"/>
-							<span><?php echo $product->name; ?></span>
+							<img width="100%" style="max-height:138px !important;" src="<?php echo Yii::$app->params['frontendUrl'] . '/uploads/products/' . $product->image; ?>"/>
+							<span><?php echo (strlen($product->name) > 18) ? substr($product->name, 0, 17) . '...' : $product->name; ?></span>
 						</div>
 					</a>
 			<?php } ?>

@@ -468,8 +468,7 @@ a {
 .also-like-product:hover{
 	border: 3px solid #12c3ee;
 	cursor: pointer;
-}
-div.news-item{display: inline-block;width: 100%;}
+}div.news-item{display: inline-block;width: 100%;}
 .news-image{display: inline-block;width: 25%;}
 .news-description{float: right;width: 74%;}
 p.date{float: left;font-size: 11px;text-transform: uppercase;color: #999;font-weight: 700;width: 100%;margin-bottom:0px !important;}
