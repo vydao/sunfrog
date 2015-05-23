@@ -36,64 +36,26 @@ class ProductsController extends \yii\web\Controller
     public function actionIndex()
     {
     	if(Yii::$app->request->post('product_url')){
-            $urls = Yii::$app->request->post('product_url');
-            $url_list = explode(';', $urls);
+            $prod_urls = Yii::$app->request->post('product_url');
+            if(!empty($prod_urls)){
+                $url_list = explode(';', $prod_urls);
             foreach($url_list as $url){
-                $url = trim($url);
-    		$product_model = new Product();
-    		$product_info = [
-                'category_id' => '',
-	    		'name' => '',
-	    		'description' => '',
-	    		'size'	=> '',
-                'price' => 0.00,
-	    		'details' => '',
-	    		'original_url' => '',
-	    		'created_ts' => date('Ymd')
-    		];
-
-            $category = Yii::$app->request->post('category');
-            if(!empty($category)){
-                $product_info['category_id'] = $category;
+                   $this->_getProductData($url);
+                }
             }
-
-    		$imgdir = Yii::getAlias('@uploadPath') . '/products/';
-
+    	}else if(Yii::$app->request->post('category_url')){
+            $cate_urls = Yii::$app->request->post('category_url');
+            if(!empty($cate_urls)){
+                $url_list = explode(';', $cate_urls);
+                foreach($url_list as $url){
     		$html = file_get_html($url);
-    		$product_info['original_url'] = $url;
-                $product_name = $html->find('h1.top_title', 0); // Get Product name
-			if(!empty($product_name)){
-				$product_info['name'] = $product_name->innertext;
+                    $links = $html->find('div.frameit a'); //Get Product size
+                    if(!empty($links)){
+                        foreach ($links as $key => $link) {
+                            $product_url = $url . $link->href;
+                            $this->_getProductData($product_url);
 			}
-
-                $img = $html->find('img.lg_view', 0); //Get Product image
-			if(!empty($img)){
-				$file_name = urldecode(end(explode('/', $img->src)));
-				$product_info['image'] = $file_name;
-				copy($img->src, $imgdir . $file_name);
-			}
-
-                $price = $html->find('span.priceshow', 0); //Get Product size
-            if(!empty($price)){
-                $product_price = end(explode('$', $price->innertext));
-                $product_info['price'] = $product_price;
-            }
-
-                $description = $html->find('div.explain p', 1); //Get Product description
-			if(!empty($description)){
-				$product_info['description'] = trim($description->innertext);
-			}
-
-			$product_model->attributes = $product_info;
-			if($product_model->validate()){
-				if($product_model->save()){
-                        //return $this->redirect(['products/view/' . $product_model->id]);
-                        //return $this->refresh();
-				}else{
-					Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
 				}
-			}else{
-				Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
 			}
     	}
     	}
@@ -182,4 +144,64 @@ class ProductsController extends \yii\web\Controller
         }
     }
 
+    private function _getProductData($url){
+        $url = trim($url);
+        if(strlen($url) > 0){
+            $product_model = new Product();
+            $product_info = [
+                'category_id' => '',
+                'name' => '',
+                'description' => '',
+                'size'  => '',
+                'price' => 0.00,
+                'details' => '',
+                'original_url' => '',
+                'created_ts' => date('Ymd')
+            ];
+
+            $category = Yii::$app->request->post('category');
+            if(!empty($category)){
+                $product_info['category_id'] = $category;
+            }
+
+            $imgdir = Yii::getAlias('@uploadPath') . '/products/';
+
+            $html = file_get_html($url);
+            $product_info['original_url'] = $url;
+            $product_name = $html->find('h1.top_title', 0); // Get Product name
+            if(!empty($product_name)){
+                $product_info['name'] = $product_name->innertext;
+            }
+
+            $img = $html->find('img.lg_view', 0); //Get Product image
+            if(!empty($img)){
+                $file_name = urldecode(end(explode('/', $img->src)));
+                $product_info['image'] = $file_name;
+                copy($img->src, $imgdir . $file_name);
+            }
+
+            $price = $html->find('span.priceshow', 0); //Get Product size
+            if(!empty($price)){
+                $product_price = end(explode('$', $price->innertext));
+                $product_info['price'] = $product_price;
+            }
+
+            $description = $html->find('div.explain p', 1); //Get Product description
+            if(!empty($description)){
+                $product_info['description'] = trim($description->innertext);
+            }
+
+            $product_model->attributes = $product_info;
+            if($product_model->validate()){
+                if($product_model->save()){
+                    //return $this->redirect(['products/view/' . $product_model->id]);
+                    //return $this->refresh();
+                }else{
+                    Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
+                }
+            }else{
+                Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
+            }
+        }
+    }
 }
