@@ -11,11 +11,13 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use common\models\Product;
 use common\models\Category;
+use yii\data\Pagination;
 
 
 class ProductsController extends \yii\web\Controller
 {
 	public $layout = 'dashboard';
+    public $page_size = 24;
     
     public function behaviors()
     {
@@ -60,10 +62,15 @@ class ProductsController extends \yii\web\Controller
     	}
     	}
 
-        $products = Product::find()
-            ->select('id, image, name, created_ts')
-            ->indexBy('id')
-            ->orderBy('created_ts DESC')
+        $query = Product::find();
+        $countQuery = clone $query;
+        $pages = new Pagination([
+            'totalCount' => $countQuery->count(),
+            'defaultPageSize' => $this->page_size
+        ]);
+        $products = $query->orderBy('created_ts DESC')
+            ->offset($pages->offset)
+            ->limit($pages->limit)
             ->all();
 
         $categories = Category::find()
@@ -73,7 +80,8 @@ class ProductsController extends \yii\web\Controller
 
         return $this->render('index', [
                 'categories' => $categories,
-                'products' => $products
+                'products' => $products,
+                'pages' => $pages
             ]);
     }
 
@@ -177,7 +185,8 @@ class ProductsController extends \yii\web\Controller
             if(!empty($img)){
                 $file_name = urldecode(end(explode('/', $img->src)));
                 $product_info['image'] = $file_name;
-                copy($img->src, $imgdir . $file_name);
+                $src = 'http:' . $img->src;
+                copy($src, $imgdir . $file_name);
             }
 
             $price = $html->find('span.priceshow', 0); //Get Product size
