@@ -1,3 +1,6 @@
+<?php
+use yii\widgets\LinkPager;
+?>
 <article class="content">
     <?php if(!empty($products)){
             $i = 0;
@@ -19,4 +22,9 @@
       <?php } ?>
       <?php }else{ echo "<h1>Coming soon.</h1>"; } ?>
     <div class="clear"></div>
+    <?php if(!empty($pages)){
+        echo LinkPager::widget([
+            'pagination' => $pages,
+        ]);
+    } ?>
 </article>

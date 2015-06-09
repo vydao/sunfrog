@@ -13,6 +13,7 @@ use common\models\Product;
 use common\models\ProductSearch;
 use common\models\Category;
 use common\models\Setting;
+use yii\data\Pagination;
 
 /**
  * Site controller
@@ -111,11 +112,19 @@ class SiteController extends CController
     {
         $cate_id = Yii::$app->request->get('id');
         if(!empty($cate_id)){
-            $products = Product::find()
-                          ->where('category_id=:id', [':id' => $cate_id])
+            $query = Product::find()->where('category_id=:id', [':id' => $cate_id]);
+            $countQuery = clone $query;
+            $pages = new Pagination([
+                'totalCount' => $countQuery->count(),
+                'defaultPageSize' => 40
+            ]);
+            $products = $query->where('category_id=:id', [':id' => $cate_id])
                           ->orderBy('created_ts DESC')
+                ->offset($pages->offset)
+                ->limit($pages->limit)
                           ->all();
-            return $this->render('category', ['products' => $products]);
+
+            return $this->render('category', ['products' => $products, 'pages' => $pages]);
         }else{
             throw new Exception("Error Processing Request", 1);
         }

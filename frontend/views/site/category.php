@@ -4,5 +4,5 @@
 $this->title = 'Sunfrog Shirt';
 ?>
 
-<?php echo $this->render('_items', ['products' => $products]); ?>
+<?php echo $this->render('_items', ['products' => $products, 'pages' => $pages]); ?>
 
