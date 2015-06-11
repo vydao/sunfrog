@@ -204,11 +204,11 @@ class ProductsController extends \yii\web\Controller
                 $product_info['name'] = $product_name->innertext;
 
                 $img = $html->find('img.lg_view', 0); //Get Product image
-                if(isset($img->src)){
-                    $file_name = urldecode(end(explode('/', $img->src)));
-                    $product_info['image'] = $file_name;
-                    $src = 'http:' . $img->src;
-                    copy($src, $imgdir . $file_name);
+                
+                 $src = 'http:' . $img->src;    
+                 $file_name = urldecode(end(explode('/', $img->src)));
+                if(isset($img->src) && @copy($src, $imgdir . $file_name) ){                    
+                    $product_info['image'] = $file_name;                                   
                 }
 
                 $price = $html->find('span.priceshow', 0); //Get Product size
