@@ -23,6 +23,8 @@ $banner = Logo::find()->select('photo, name')->where('com="logo"')->one();
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="9Iuq8N4OXTU67CwDfYFFTqos0bX2e5ULCh8mUQyaUCQ" />
+    
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
