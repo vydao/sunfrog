@@ -47,19 +47,21 @@ class ProductsController extends \yii\web\Controller
             }
     	}else if(Yii::$app->request->post('category_url')){
             $cate_urls = Yii::$app->request->post('category_url');
-            if(!empty($cate_urls)){
+            if(!empty($cate_urls)){                
                 $url_list = explode(';', $cate_urls);
                 foreach($url_list as $url){
-    		$html = file_get_html($url);
-                    $links = $html->find('div.frameit a'); //Get Product size
-                    if(!empty($links)){
-                        foreach ($links as $key => $link) {
-                            $product_url = $url . $link->href;
-                            $this->_getProductData($product_url);
-			}
-				}
-			}
-    	}
+                    if(strlen($url) > 0 && !$this->is_404($url)){
+                        $html = file_get_html($url);
+                        $links = $html->find('div.frameit a'); //Get Product size
+                        if(!empty($links)){
+                            foreach ($links as $key => $link) {
+                                $product_url = $url . $link->href;
+                                $this->_getProductData($product_url);
+                            }    		        
+			            }
+    				}
+    			}
+        	}
     	}
 
         $query = Product::find();
@@ -152,9 +154,28 @@ class ProductsController extends \yii\web\Controller
         }
     }
 
+    public function is_404($url) {
+        $handle = curl_init($url);
+        curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+
+        /* Get the HTML or whatever is linked in $url. */
+        $response = curl_exec($handle);
+
+        /* Check for 404 (file not found). */
+        $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+        curl_close($handle);
+
+        /* If the document has loaded successfully without any redirection or error */
+        if ($httpCode >= 200 && $httpCode < 300) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     private function _getProductData($url){
         $url = trim($url);
-        if(strlen($url) > 0){
+        if(strlen($url) > 0 && !$this->is_404($url)){
             $product_model = new Product();
             $product_info = [
                 'category_id' => '',
