@@ -45,17 +45,19 @@ class ProductsController extends \yii\web\Controller
                    $this->_getProductData($url);
                 }
             }
-    	}else if(Yii::$app->request->post('category_url')){
+    	}
+        if(Yii::$app->request->post('category_url')){
             $cate_urls = Yii::$app->request->post('category_url');
             if(!empty($cate_urls)){                
                 $url_list = explode(';', $cate_urls);
+                $url_shirt = 'http://www.sunfrogshirts.com';
                 foreach($url_list as $url){
                     if(strlen($url) > 0 && !$this->is_404($url)){
                         $html = file_get_html($url);
-                        $links = $html->find('div.frameit a'); //Get Product size
+                        $links = $html->find('div.frameit a'); //Get Product size                        
                         if(!empty($links)){
-                            foreach ($links as $key => $link) {
-                                $product_url = $url . $link->href;
+                            foreach ($links as $link) {
+                                $product_url = $url_shirt . $link->href;
                                 $this->_getProductData($product_url);
                             }    		        
 			            }
@@ -198,40 +200,41 @@ class ProductsController extends \yii\web\Controller
             $html = file_get_html($url);
             $product_info['original_url'] = $url;
             $product_name = $html->find('h1.top_title', 0); // Get Product name
-            if(!empty($product_name)){
+            if(isset($product_name->innertext) && !empty($product_name->innertext)){    //Only save product if it has name
                 $product_info['name'] = $product_name->innertext;
-            }
 
-            $img = $html->find('img.lg_view', 0); //Get Product image
-            if(!empty($img)){
-                $file_name = urldecode(end(explode('/', $img->src)));
-                $product_info['image'] = $file_name;
-                $src = 'http:' . $img->src;
-                copy($src, $imgdir . $file_name);
-            }
+                $img = $html->find('img.lg_view', 0); //Get Product image
+                if(isset($img->src)){
+                    $file_name = urldecode(end(explode('/', $img->src)));
+                    $product_info['image'] = $file_name;
+                    $src = 'http:' . $img->src;
+                    copy($src, $imgdir . $file_name);
+                }
 
-            $price = $html->find('span.priceshow', 0); //Get Product size
-            if(!empty($price)){
-                $product_price = end(explode('$', $price->innertext));
-                $product_info['price'] = $product_price;
-            }
+                $price = $html->find('span.priceshow', 0); //Get Product size
+                if(isset($price->innertext)){
+                    $product_price = end(explode('$', $price->innertext));
+                    $product_info['price'] = $product_price;
+                }
 
-            $description = $html->find('div.explain p', 1); //Get Product description
-            if(!empty($description)){
-                $product_info['description'] = trim($description->innertext);
-            }
+                $description = $html->find('div.explain p', 1); //Get Product description
+                if(isset($description->innertext)){
+                    $product_info['description'] = trim($description->innertext);
+                }
 
-            $product_model->attributes = $product_info;
-            if($product_model->validate()){
-                if($product_model->save()){
-                    //return $this->redirect(['products/view/' . $product_model->id]);
-                    //return $this->refresh();
+                $product_model->attributes = $product_info;
+                if($product_model->validate()){
+                    if($product_model->save()){
+                        //return $this->redirect(['products/view/' . $product_model->id]);
+                        //return $this->refresh();
+                    }else{
+                        Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
+                    }
                 }else{
                     Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
                 }
-            }else{
-                Yii::$app->session->setFlash('saveErr', 'An error occurred. Please try again!');
-            }
+
+            }        
         }
     }
 }
