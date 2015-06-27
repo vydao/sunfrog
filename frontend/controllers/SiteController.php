@@ -23,6 +23,8 @@ class SiteController extends CController
 	/**
      * @inheritdoc
      */
+    public $is_home_page = false;
+
     public function actions()
     {
         return [
@@ -38,6 +40,7 @@ class SiteController extends CController
 
     public function actionIndex()
     {
+        $this->is_home_page = true;
         $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
 
         $search_params = Yii::$app->request->get('SEARCH');
@@ -99,7 +102,7 @@ class SiteController extends CController
                     ->limit(8)
                     ->all();
                 $setting_id = Setting::find()->select('name')->where('active = 1')->one();
-                return $this->render('detail', ['model' => $product, 'related_products' => $related_products, 'setting_id' => $setting_id->name]);
+                return $this->render('detail', ['product' => $product, 'related_products' => $related_products, 'setting_id' => $setting_id->name]);
             }else{
                 throw new Exception("Page not found", 1);
             }

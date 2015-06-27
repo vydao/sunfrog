@@ -1,45 +1,93 @@
 <?php
 /* @var $this yii\web\View */
 
-$this->title =  $model->name;
+$this->title =  $product->name;
 $url = Yii::$app->params['_url'];
 ?>
-<div class="row">
-	<div class="col-md-8">
-		<h3><?php echo $model->name; ?></h3>
-		<a target="_blank" href="<?php echo $model->original_url.'?'.$setting_id; ?>">
-		<img class="product-detail-image" src="<?php echo Yii::$app->request->baseUrl; ?>/uploads/products/<?php echo $model->image ?>" border="0" />
-		</a>
-		<p class="product-name"><?php echo $model->name; ?></p>
-		<p class="text-desciption"><?php echo ($model->description) ? $model->description : ''; ?></p>
-		
-		<div class="product_space" style="width:100%"></div>
-		<div style="clear:both;overflow:hidden">
-		<button onclick="location.href='<?php echo $model->original_url.'?'.$setting_id; ?>'" class="button orangeb leftd large view-more">View Details</button>
-		</div>
-		<!-- <h4 class="size-details">T–Shirt Sizing and Details</h4>
-		<div><?php //echo $model->size; ?></div>
-		<div><?php //echo $model->details; ?></div> -->
-		<div style="clear:both"></div>
-		<?php if(!empty($related_products)){ ?>
-		<h4 class="related-product-text">Related Products</h4>
-				<?php foreach($related_products as $key => $product){ ?>
-					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['detail/' . $product->id]); ?>" >
-					<img class="col-md-3 related-product" src="<?php echo Yii::$app->request->baseUrl; ?>/uploads/products/<?php echo $product->image ?>" border="0" />
-					</a>
-				<?php } ?>
-		<?php } ?>
+<div class="container" style="padding-top:10px;">
+	<h1 class="hidden-xs top_title"><?php echo $product->name; ?></h1>
 
-	</div>
-	<div class="col-md-4">
-		<?php if(!empty($related_products)){ ?>
-		<h4 class="size-details text-uppercase">you may also like these:</h4>
-				<?php foreach($related_products as $key => $product){ ?>
-					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['detail/' . $product->id]); ?>" >
-					<img class="also-like-product" src="<?php echo Yii::$app->request->baseUrl; ?>/uploads/products/<?php echo $product->image ?>" border="0" />
+	<div class="row" style="margin-bottom:40px;">
+		<div class="col-sm-7  ">
+			<div class="productFrame">
+				<span class="priceshow"><?php echo $product->price; ?></span>
+				<img src="/images/tag-btm.png" width="13" height="8" class="btm-s">
+				<a data-toggle="modal" data-target="#imageModal" data-theimage="<?php echo $product->image; ?>">
+					<img src="/uploads/products/<?php echo $product->image; ?>" alt="Science T-Shirt" width="651" height="651" class="img-responsive lg_view">
+				</a>
+				<div class="clearfix"></div>
+			</div>
+			<div class="explain hidden-xs">
+				<p><strong>Design Description:</strong></p>
+				<p><?php echo $product->description; ?></p>
+			</div>
+
+		</div>
+		<div class="col-sm-5  col-lg-4 col-lg-offset-1">
+			<div class="hidden-xs" style="min-height:85px">
+				<button type="submit" name="submit" class="btn btn-lg btn-block btn-xxl btn-success btn-bright  hidden-xs">Add To Cart &nbsp;&nbsp;<i class="fa fa-caret-right"></i></button>
+			</div>
+			<div class="clearfix"></div>
+			<div class="hidden-xs">
+				<div class="clearfix"></div>
+
+				<img src="/images/payment-options.jpg" width="368" height="41" alt="Visa MasterCard American Express Paypal" class="img-responsive center-block">
+
+				<br>
+				<br>
+
+				<div class="alt-bg alt-bg-pad">
+
+					<div class="col-xs-6 visible-xs">
+						<a href="http://www.sunfrogshirts.com/returns/">
+							<img src="/images/satisfaction.svg" width="296" height="66" alt="100% Satisfaction Guaranteed!" class="img-responsive cen-sm">
+						</a>
+					</div>
+
+					<div class="col-xs-6 visible-xs">
+						<img src="/images/printed-in-us.svg" width="209" height="66" alt="Printed in the USA" class="img-responsive cen-sm">
+					</div>
+
+					<div class="hidden-xs">
+						<a href="" class="">
+							<img src="/images/satisfaction.svg" width="296" height="66" alt="100% Satisfaction Guaranteed!" class="img-responsive cen-sm">
+						</a>
+					</div>
+
+				</div>
+
+
+				<div class="hidden-xs">
+					<center>
+
+						<div class="print-us">
+							<img src="/images/printed-in-the-us.png" width="34" height="32" alt="Printed in the USA" class="img-responsive pull-left">
+							<h4 style="color:#b9b9b9">Printed in the USA!</h4>
+						</div>
+
+						<br>
+						<br>
+					</center>
+				</div>
+			</div>
+
+			<br>
+			<div class="alt-bg alt-bg-pad visible-xs">
+
+				<div class="col-xs-6">
+					<a href="http://www.sunfrogshirts.com/returns/">
+						<img src="./Science T-Shirt_files/satisfaction.svg" width="296" height="66" alt="100% Satisfaction Guaranteed!" class="img-responsive cen-sm">
 					</a>
-				<?php } ?>
-		<?php } ?>
-		<button onclick="location.href='<?php echo $model->original_url.'?'.$setting_id; ?>'" style="width:100%;margin-top:20px;" class="button orangeb leftd large view-more">Buy Now</button>
+				</div>
+
+				<div class="col-xs-6">
+					<img src="/images/printed-in-us.svg" width="209" height="66" alt="Printed in the USA" class="img-responsive cen-sm">
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+			<br>
+		</div>
 	</div>
 </div>
+<h4>You might also like</h4>
