@@ -40,6 +40,9 @@ class SiteController extends CController
 
     public function actionIndex()
     {
+    	$session = Yii::$app->session;
+    	$session->remove('category');
+    	
         $this->is_home_page = true;
         $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
 
@@ -62,6 +65,9 @@ class SiteController extends CController
 
     public function actionContact()
     {
+    	$session = Yii::$app->session;
+    	$session->remove('category');
+    	
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
@@ -119,8 +125,12 @@ class SiteController extends CController
 
     public function actionCategory()
     {
-        $cate_id = Yii::$app->request->get('id');
-        if(!empty($cate_id)){
+    	$cate_id = Yii::$app->request->get('id');
+    	
+    	if(!empty($cate_id)){
+    		$session = Yii::$app->session;
+    		$category = Category::findOne($cate_id);
+    		$session['category'] = ['id'=>$cate_id,'name'=>$category->name];
             $query = Product::find()->where('category_id=:id', [':id' => $cate_id]);
             $countQuery = clone $query;
             $pages = new Pagination([
@@ -128,10 +138,10 @@ class SiteController extends CController
                 'defaultPageSize' => 40
             ]);
             $products = $query->where('category_id=:id', [':id' => $cate_id])
-                          ->orderBy('created_ts DESC')
-                ->offset($pages->offset)
-                ->limit($pages->limit)
-                          ->all();
+                          	->orderBy('created_ts DESC')
+			                ->offset($pages->offset)
+			                ->limit($pages->limit)
+			                ->all();
 
             return $this->render('category', ['products' => $products, 'pages' => $pages]);
         }else{

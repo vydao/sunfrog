@@ -47,7 +47,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
         </script>
 
         <div class="col-sm-4 col-md-6 searchbarTopNav cart-checkoutHide">
-            <form action="http://www.sunfrogshirts.com/search/" method="get" onsubmit="return plsWaitSearch();">
+            <form action="<?php echo Yii::$app->params['site_url']?>search/" method="get" onsubmit="return plsWaitSearch();">
 
                 <input id="byCatSelect" type="hidden" name="cId" value="0">
                 <input id="byCatName" type="hidden" name="cName" value="">
@@ -55,13 +55,23 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
                     <div class="input-group-btn search-panel">
 
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="margin-right: -2px;">
-
-                            All
+						<?php 
+                            $session = Yii::$app->session;
+                            $cate_stored = $session['category'] ? $session['category']['name'] : false;
+                            if( $cate_stored )
+                            {
+                            	echo $cate_stored;
+                            } else {
+                            	echo 'All';
+                            }
+                        ?>
+                           
 
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="http://www.sunfrogshirts.com/#">All</a></li>
+                            <li><a href="<?php echo Yii::$app->params['site_url'];?>">All</a></li>
+                            
                             <?php foreach ($categories as $cate) { ?>
                                 <li><a href="<?php echo Yii::$app->request->baseUrl . '/category/' . $cate->id; ?>"><?php echo $cate->name; ?></a></li>
                             <?php } ?>
