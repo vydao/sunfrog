@@ -143,7 +143,8 @@ class SiteController extends CController
 			                ->limit($pages->limit)
 			                ->all();
 
-            return $this->render('category', ['products' => $products, 'pages' => $pages]);
+            $category = Category::find()->where('id=:id', [':id' => $cate_id])->one();
+            return $this->render('category', ['products' => $products, 'pages' => $pages, 'category' => $category]);
         }else{
             throw new Exception("Error Processing Request", 1);
         }
