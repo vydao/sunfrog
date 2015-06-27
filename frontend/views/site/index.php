@@ -16,7 +16,7 @@
 						<div class="frameit">
 							<a href="/detail/'. $product->id .'" border="0">
 								<div class="frontThumb">
-									<img src="/uploads/products/'. $product->image .'" data-original="/uploads/products/'. $product->image .'" class="img-responsive lazy" alt="'. $product->image .'" title="'. $product->image .'" style="display: block;">
+									<img src="'. $product->imageUrl .'" data-original="'. $product->imageUrl .'" class="img-responsive lazy" alt="'. $product->name .'" title="'. $product->name .'" style="display: block;">
 								</div>
 							</a>
 						</div>

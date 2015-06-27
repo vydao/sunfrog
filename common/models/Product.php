@@ -70,5 +70,24 @@ class Product extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Category::className(), ['id' => 'category_id']);
     }
+    
+    /**
+     * get image url
+     */
+    public function getImageUrl()
+    {
+    	$url = $this->image;
+    	if( !empty($url) )
+    	{
+    		$path = explode('/',$url);
+    		if( isset($path[0]) && in_array($path[0],array('http:','https:')) )
+    		{
+    			return $url;
+    		} else {
+    			return '/uploads/products/'. $url;
+    		}
+    	}
+    	return $url;
+    }
 
 }
