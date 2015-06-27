@@ -12,8 +12,8 @@ $url = Yii::$app->params['_url'];
 			<div class="productFrame">
 				<span class="priceshow"><?php echo $product->price; ?></span>
 				<img src="/images/tag-btm.png" width="13" height="8" class="btm-s">
-				<a data-toggle="modal" data-target="#imageModal" data-theimage="<?php echo $product->image; ?>">
-					<img src="/uploads/products/<?php echo $product->image; ?>" alt="Science T-Shirt" width="651" height="651" class="img-responsive lg_view">
+				<a data-toggle="modal" data-target="#imageModal" data-theimage="<?php echo $product->imageUrl; ?>">
+					<img src="<?php echo $product->imageUrl; ?>" alt="Science T-Shirt" width="651" height="651" class="img-responsive lg_view">
 				</a>
 				<div class="clearfix"></div>
 			</div>

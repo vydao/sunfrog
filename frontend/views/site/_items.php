@@ -10,7 +10,7 @@ use yii\widgets\LinkPager;
       ?>
         <div class="product_info">
             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['detail/' . $product->id]) ?>" class="product_img">
-            <img src="<?php echo Yii::$app->request->baseUrl . "/uploads/products/{$product->image}"; ?>" border="0" /></a>
+            <img src="<?php echo $product->imageUrl;?>" border="0" /></a>
             <h2><a href="" class="product_name"><?php echo $product->name; ?></a></h2>
             <h3 class="product_price">$<?php echo (!empty($product->price)) ? number_format($product->price,2) : 0 ?></h3>
         </div>

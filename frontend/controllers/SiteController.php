@@ -102,7 +102,7 @@ class SiteController extends CController
                     ->limit(8)
                     ->all();
                 $setting_id = Setting::find()->select('name')->where('active = 1')->one();
-                return $this->render('detail', ['product' => $product, 'related_products' => $related_products, 'setting_id' => $setting_id->name]);
+                return $this->render('detail', ['product' => $product, 'related_products' => $related_products, 'setting_id' => $setting_id?$setting_id->name:'']);
             }else{
                 throw new Exception("Page not found", 1);
             }
