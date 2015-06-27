@@ -101,8 +101,14 @@ class SiteController extends CController
                     ->orderBy('rand()')
                     ->limit(8)
                     ->all();
-                $setting_id = Setting::find()->select('name')->where('active = 1')->one();
-                return $this->render('detail', ['product' => $product, 'related_products' => $related_products, 'setting_id' => $setting_id?$setting_id->name:'']);
+                $setting_id = Setting::find()->select('name,value')->where('active = 1')->one();
+                return $this->render('detail', 
+                	[
+	                	'product' => $product, 
+	                	'related_products' => $related_products, 
+	                	'setting_id' => $setting_id ? '?' . $setting_id->name . '=' . $setting_id->value : ''
+                	]
+                );
             }else{
                 throw new Exception("Page not found", 1);
             }

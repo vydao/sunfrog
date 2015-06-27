@@ -10,7 +10,7 @@ $url = Yii::$app->params['_url'];
 	<div class="row" style="margin-bottom:40px;">
 		<div class="col-sm-7  ">
 			<div class="productFrame">
-				<span class="priceshow"><?php echo $product->price; ?></span>
+				<span class="priceshow"><?php echo '$' . number_format($product->price, 2, '.', ''); ?></span>
 				<img src="/images/tag-btm.png" width="13" height="8" class="btm-s">
 				<a data-toggle="modal" data-target="#imageModal" data-theimage="<?php echo $product->imageUrl; ?>">
 					<img src="<?php echo $product->imageUrl; ?>" alt="Science T-Shirt" width="651" height="651" class="img-responsive lg_view">
@@ -25,7 +25,7 @@ $url = Yii::$app->params['_url'];
 		</div>
 		<div class="col-sm-5  col-lg-4 col-lg-offset-1">
 			<div class="hidden-xs" style="min-height:85px">
-				<button type="submit" name="submit" class="btn btn-lg btn-block btn-xxl btn-success btn-bright  hidden-xs">Add To Cart &nbsp;&nbsp;<i class="fa fa-caret-right"></i></button>
+				<a href="<?php echo $product->original_url . $setting_id?>" type="button" name="submit" class="btn btn-lg btn-block btn-xxl btn-success btn-bright  hidden-xs">Add To Cart &nbsp;&nbsp;<i class="fa fa-caret-right"></i></a>
 			</div>
 			<div class="clearfix"></div>
 			<div class="hidden-xs">
