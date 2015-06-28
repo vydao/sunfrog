@@ -24,6 +24,7 @@ class SiteController extends CController
      * @inheritdoc
      */
     public $is_home_page = false;
+    public $slider = array();
 
     public function actions()
     {
@@ -44,7 +45,7 @@ class SiteController extends CController
     	$session->remove('category');
     	
         $this->is_home_page = true;
-        $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
+        $this->slider = Logo::find()->select('photo, name')->all();
 
         $search_params = Yii::$app->request->get('SEARCH');
         if(!empty($search_params)){
@@ -60,7 +61,7 @@ class SiteController extends CController
                       ->limit(40)
                       ->all();
         }
-        return $this->render('index', ['products' => $products, 'search' => false, 'slider' => $slider]);
+        return $this->render('index', ['products' => $products, 'search' => false, 'slider' => $this->slider]);
     }
     
 	/*
