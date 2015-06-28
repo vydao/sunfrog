@@ -1,4 +1,9 @@
+<?php if( $search === false ) : ?>
 <h4 class="text-primary text-uppercase" style="padding-top:1em;">What's Hot</h4>
+<?php elseif( !empty($search_text) ) : ?>
+<h4>Search results for: "<?php echo $search_text;?></h4>
+<div class="clearfix"></div>
+<?php endif;?>
 <?php if (!empty($products)) {
 		$i = 0;
 		$new_row = true;
@@ -35,4 +40,9 @@
 				$i = 0;
 			}
 		}
+} else if( $search === true ){ 
+	echo '<div class="clearfix"></div>
+	<h1 class="text-center">Sorry... </h1>
+	<h3 class="text-center">Your search did not return any results. You maybe interested in our new products!</h3>
+	<br><br>';
 } ?>

@@ -41,11 +41,27 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
+    	$conditions = null;
+    	if( $params['cId'] )
+    	{
+    		$conditions .= "`name` LIKE '%{$params['search']}%'";
+    	}
+    	if( $params['cId'] )
+    	{
+    		if( !empty($conditions) )
+    			$conditions .= " AND `category_id` = {$params['cId']}";
+    		else
+    			$conditions .= "`category_id` = {$params['cId']}";
+    	}
+    	
+    	
+    	
         $products = Product::find()
                       ->select('id, image, name, original_url, price')
-                      ->where("`name` LIKE '%{$params}%'")
+                      ->where($conditions)
                       ->orderBy('created_ts DESC')
                       ->all();
+      
         return $products;
     }
 }

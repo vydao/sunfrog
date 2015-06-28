@@ -47,27 +47,27 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
         </script>
 
         <div class="col-sm-4 col-md-6 searchbarTopNav cart-checkoutHide">
-            <form action="<?php echo Yii::$app->params['site_url']?>search/" method="get" onsubmit="return plsWaitSearch();">
-
-                <input id="byCatSelect" type="hidden" name="cId" value="0">
-                <input id="byCatName" type="hidden" name="cName" value="">
+            <form action="<?php echo Yii::$app->params['site_url']?>search" method="get" onsubmit="return plsWaitSearch();">
+				<?php 
+                	$session = Yii::$app->session;
+                	$cate_stored = $session['category'] ? $session['category'] : false;
+                	if( $cate_stored )
+                	{
+                		$cate_name_stored = $cate_stored['name'];
+                		$cate_id_stored = $cate_stored['id'];
+                	} else {
+                		$cate_name_stored = 'All';
+                		$cate_id_stored = 0;
+                	}
+                ?>
+                <input id="byCatSelect" type="hidden" name="cId" value="<?php echo $cate_id_stored;?>">
+                <input id="byCatName" type="hidden" name="cName" value="<?php echo $cate_id_stored ? $cate_name_stored : '';?>">
                 <div class="input-group">
                     <div class="input-group-btn search-panel">
 
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="margin-right: -2px;">
-						<?php 
-                            $session = Yii::$app->session;
-                            $cate_stored = $session['category'] ? $session['category']['name'] : false;
-                            if( $cate_stored )
-                            {
-                            	echo $cate_stored;
-                            } else {
-                            	echo 'All';
-                            }
-                        ?>
-                           
-
-                            <span class="caret"></span>
+							<?php echo $cate_name_stored;?>
+							<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="<?php echo Yii::$app->params['site_url'];?>">All</a></li>

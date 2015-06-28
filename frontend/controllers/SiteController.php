@@ -60,9 +60,40 @@ class SiteController extends CController
                       ->limit(40)
                       ->all();
         }
-        return $this->render('index', ['products' => $products, 'slider' => $slider]);
+        return $this->render('index', ['products' => $products, 'search' => false, 'slider' => $slider]);
     }
+    
+	/*
+	 * search product
+	 */
+ 	public function actionSearch()
+    {
+    	$session = Yii::$app->session;
+    	
+        $this->is_home_page = false;
+        $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
 
+        $search_param = Yii::$app->request->get('search');
+        $cId_param = Yii::$app->request->get('cId');
+        $cName_param = Yii::$app->request->get('cName');
+        $search_params = ['cId'=>strip_tags($cId_param),'cName'=>strip_tags($cName_param),'search'=>strip_tags($search_param)];
+      
+        if( !empty($search_param) || $cId_param ){
+            $searchModel = new ProductSearch();
+            
+            $products = $searchModel->search($search_params);
+        }else{
+            $products = Product::find()
+                      ->select('id, image, name, original_url, price')
+                      ->indexBy('id')
+                      ->orderBy('created_ts DESC')
+                      ->limit(40)
+                      ->all();
+        }
+        
+        return $this->render('index', ['products' => $products, 'search' => true, 'search_text' => $search_param, 'slider' => $slider]);
+    }
+    
     public function actionContact()
     {
     	$session = Yii::$app->session;

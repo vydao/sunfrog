@@ -50,6 +50,7 @@ return [
                 'contact' => '/site/contact',
                 'detail/<id:\d+>' => '/site/detail',
                 'category/<id:\d+>' => '/site/category',
+        		'search' => '/site/search',
 
 				'<controller:\w+>/<id:\d+>'	=> '<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'	=> '<controller>/<action>',
