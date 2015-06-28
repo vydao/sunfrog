@@ -188,7 +188,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
   ga('send', 'pageview');
 
 </script>
-<div id="footer" class="shellOff">
+<!--div id="footer" class="shellOff">
     <div class="darkbg shellOff">
         <div class="container" style="padding-top:1.5em;">
             <div class="col-sm-offset-0 col-sm-6 col-sm-push-6">
@@ -240,7 +240,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
         </div>
     </div>
 
-</div>
+</div-->
 
 <script>
     // ie10 viewport bug workaround
