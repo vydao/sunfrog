@@ -106,96 +106,26 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
 </div>
 
 </nav>
-<?php if ( $this->context->is_home_page ) { ?>
+<?php if ( $this->context->is_home_page && !empty( $this->context->slider )) { ?>
 <div class="shellOff">
-    <div id="carousel1" class="carousel slide" data-ride="carousel">
+   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="jumbotron sp-bg-wrap text-center firstslide">
-                    <div class="container" style="padding-left: 52px; padding-right: 52px; padding-top:15px;">
-                        <form action="http://www.sunfrogshirts.com/search/" method="get">
-                            <input id="byCatSelect" type="hidden" name="cId" value="0">
-                            <input id="byCatName" type="hidden" name="cName" value="">
-
-                            <div class="col-md-4 text-center">
-                                <h1>You are&nbsp;</h1>
+  <?php foreach( $this->context->slider as $key => $slider ) { ?>
+    <div class="item <?php if ($key == 0) echo 'active' ?>">
+      <img src="/uploads/logo/<?php echo $slider->photo; ?>" alt="<?php echo $slider->name; ?>">
+      <div class="carousel-caption">
                             </div>
-                            <div class="hidden-xs"><br><br></div>
-                            <div class="input-group input-group-lg col-md-6">
-
-                                <input type="text" class="form-control" name="search" placeholder="what you wear!">
-                                <span class="input-group-btn">
-                                    <button type="submit" name="submit" class="btn btn-primary">Go!</button>
-                                </span>
                             </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="jumbotron sp-bg-wrap fourthslide">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 text-center">
-                                <br class="hidden-xs"><br class="hidden-xs"><br class="hidden-xs">
-                                <img src="/images/catdayword.png" class="img-responsive center-block" alt="Happy Cats Day!">
-                                <br>
-                                <a href="http://www.sunfrogshirts.com/search/?cId=0&cName=&search=cats" class="btn btn-lg btn-primary">Click Here! <i class="fa fa-caret-right"></i></a>
-                            </div>
-                            <div class="col-sm-6 hidden-xs">
-                                <img src="/images/catdayshirt.png" class="img-responsive pull-right" alt="Cat Day Shirt">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="jumbotron sp-bg-wrap secondslide">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 text-center">
-                                <br class="hidden-xs">
-                                <img src="/images/getfatherword.png" class="img-responsive center-block custom-size" alt="Happy Fathers Day!">
-                                <br>
-                                <a href="http://www.sunfrogshirts.com/search/?cId=0&cName=&search=fathers" class="btn btn-lg btn-default">Click Here! <i class="fa fa-caret-right"></i></a>
-                            </div>
-                            <div class="col-sm-6 hidden-xs">
-                                <img src="/images/fatethersdayshirt.png" class="img-responsive pull-right" alt="Fathers Day Shirt">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="jumbotron sp-bg-wrap thirdslide">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 text-center">
-                                <br><br><br class="hidden-xs">
-                                <img src="/images/know-a-nurse.png" class="img-responsive center-block" alt="Know A Nurse?">
-                                <br>
-                                <a href="http://www.sunfrogshirts.com/search/?search=nurses&cId=0&cName=" class="btn btn-lg btn-primary">Click Here! <i class="fa fa-caret-right"></i></a>
-                            </div>
-                            <div class="col-sm-6 hidden-xs">
-                                <img src="/images/nurse-shirt.png" class="img-responsive pull-right" alt="Nurses Shirt">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <?php } ?>
         </div>
 
         <!-- Controls -->
-        <a class="left carousel-control" href="http://www.sunfrogshirts.com/#carousel1" role="button" data-slide="prev">
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="http://www.sunfrogshirts.com/#carousel1" role="button" data-slide="next">
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>

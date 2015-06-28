@@ -23,7 +23,7 @@ class LogoController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['update', 'index'],
+                        'actions' => ['update', 'index', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -61,6 +61,19 @@ class LogoController extends Controller
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionCreate()
+    {
+        $model = new Logo();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }
