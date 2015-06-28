@@ -69,7 +69,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
 							<?php echo $cate_name_stored;?>
 							<span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu" role="menu" style="max-height: 500px;overflow-y: auto;">
                             <li><a href="<?php echo Yii::$app->params['site_url'];?>">All</a></li>
                             
                             <?php foreach ($categories as $cate) { ?>
@@ -92,7 +92,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
         <div class="col-sm-4 hidden-xs cart-checkoutHide">
             <ul class="nav navbar-nav ">
                 <li class="dropdown"><a href="#" class="dropdown-toggle text-uppercase tpnav" data-toggle="dropdown" role="button" aria-expanded="false"><strong>Categories</strong> <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu" role="menu" style="max-height: 500px;overflow-y: auto;">
                         <?php foreach ($categories as $cate) { ?>
                                 <li><a href="<?php echo Yii::$app->request->baseUrl . '/category/' . $cate->id; ?>"><?php echo $cate->name; ?></a></li>
                         <?php } ?>

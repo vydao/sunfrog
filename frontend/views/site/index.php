@@ -1,7 +1,7 @@
 <?php if( $search === false ) : ?>
 <h4 class="text-primary text-uppercase" style="padding-top:1em;">What's Hot</h4>
 <?php elseif( !empty($search_text) ) : ?>
-<h4>Search results for: "<?php echo $search_text;?></h4>
+<h4>Search results for: "<?php echo $search_text;?>"</h4>
 <div class="clearfix"></div>
 <?php endif;?>
 <?php if (!empty($products)) {
