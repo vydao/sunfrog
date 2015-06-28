@@ -143,7 +143,7 @@ class SiteController extends CController
                 	[
 	                	'product' => $product, 
 	                	'related_products' => $related_products, 
-	                	'setting_id' => $setting_id ? '?' . $setting_id->name . '=' . $setting_id->value : ''
+	                	'setting_id' => $setting_id ? $setting_id->name : ''
                 	]
                 );
             }else{
