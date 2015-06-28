@@ -33,7 +33,7 @@ $this->title = 'Products Edit';
 		<div class="form-group">
 			<label class="label-char">Image</label>
 			<div>
-				<img class="product-img" src="<?php echo (!empty($model->image)) ? Yii::$app->params['frontendUrl'] . '/uploads/products/' . $model->image : ''; ?>" alt="image" />
+				<img class="product-img" src="<?php echo (!empty($model->image)) ? $model->imageUrl : ''; ?>" alt="image" />
 				<?= $form->field($model, 'image')->fileInput(['class' => 'form-control', 'style' => 'width:50%'])->label(false) ?>
 			</div>
 		</div>

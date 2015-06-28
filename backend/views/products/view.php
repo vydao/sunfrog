@@ -24,7 +24,7 @@ $this->title = 'Products Details';
 
 		<div class="form-group">
 			<label class="label-char">Image</label>
-			<div><img class="product-img" src="<?php echo (!empty($model->image)) ? Yii::$app->params['frontendUrl'] . '/uploads/products/' . $model->image : ''; ?>" alt="image" /></div>
+			<div><img class="product-img" src="<?php echo (!empty($model->image)) ? $model->imageUrl : ''; ?>" alt="image" /></div>
 		</div>
 
 		<div class="form-group">
