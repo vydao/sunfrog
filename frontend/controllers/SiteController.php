@@ -135,9 +135,9 @@ class SiteController extends CController
             if($product){
                 $related_products = Product::find()
                     ->select('id, image, price, original_url')
-                    ->where('category_id=:id', [':id' => $product->category_id])
+                    ->where('category_id=:id and id !=:pid', [':id' => $product->category_id, ':pid' => $product_id])
                     ->orderBy('rand()')
-                    ->limit(8)
+                    ->limit(6)
                     ->all();
                 $setting_id = Setting::find()->select('name,value')->where('active = 1')->one();
                 return $this->render('detail', 

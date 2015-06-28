@@ -91,3 +91,15 @@ $url = Yii::$app->params['_url'];
 	</div>
 </div>
 <h4>You might also like</h4>
+<div class="row" style="  box-shadow: 0 0 5px #ccc;border: 5px solid #fff;">
+		<?php foreach ($related_products as $prod) { ?>
+					<div class="col-md-2" style="float: left; list-style: none; position: relative;padding-left:0px;">
+								<div>
+									<a href="<?php echo '/detail/'. $prod->id; ?>" border="0" title="<?php echo $prod->name; ?>">
+										<img src="<?php echo $prod->imageUrl; ?>" width="200" height="180" alt="">
+									</a>
+								</div>
+							</div>
+		<?php } ?>
+</div>
+<br/><br/><br/>
