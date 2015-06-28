@@ -72,7 +72,6 @@ class SiteController extends CController
     	$session = Yii::$app->session;
     	
         $this->is_home_page = false;
-        $slider = Logo::find()->select('photo, name')->where('com="slider"')->one();
 
         $search_param = Yii::$app->request->get('search');
         $cId_param = Yii::$app->request->get('cId');
@@ -92,7 +91,7 @@ class SiteController extends CController
                       ->all();
         }
         
-        return $this->render('index', ['products' => $products, 'search' => true, 'search_text' => $search_param, 'slider' => $slider]);
+        return $this->render('index', ['products' => $products, 'search' => true, 'search_text' => $search_param]);
     }
     
     public function actionContact()

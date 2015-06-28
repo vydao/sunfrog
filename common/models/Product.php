@@ -84,7 +84,7 @@ class Product extends \yii\db\ActiveRecord
     		{
     			return $url;
     		} else {
-    			return '/uploads/products/'. $url;
+    			return Yii::$app->params['frontendUrl'] . '/uploads/products/'. $url;
     		}
     	}
     	return $url;

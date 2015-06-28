@@ -60,7 +60,7 @@ $this->title = 'Manage Products';
 			<?php foreach($products as $key => $product){ ?>
 					<a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['products/view/' . $product->id]); ?>">
 						<div class="col-md-2">
-							<img width="100%" style="max-height:138px !important;" src="<?php echo Yii::$app->params['frontendUrl'] . '/uploads/products/' . $product->image; ?>"/>
+							<img width="100%" style="max-height:138px !important;" src="<?php echo $product->imageUrl; ?>"/>
 							<span><?php echo (strlen($product->name) > 15) ? substr($product->name, 0, 14) . '...' : $product->name; ?></span>
 						</div>
 					</a>
