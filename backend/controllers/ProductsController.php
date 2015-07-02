@@ -65,7 +65,30 @@ class ProductsController extends \yii\web\Controller
     			}
         	}
     	}
-
+		
+     	if(Yii::$app->request->post('search_url')){
+            $search_url = Yii::$app->request->post('search_url');
+            if( strlen( $search_url ) > 0 && !$this->is_404( $search_url ) )
+            {
+            	$html = file_get_html( $search_url );
+            	
+            	$result_null = $html->find('<h3 class="text-center">Your search did not return any results. You maybe interested in our new products!</h3>' );
+            	
+            	if( count( $result_null ) == 0 )
+            	{
+	            	$links = $html->find('div.frameit a'); //Get Product size                        
+	                if( !empty( $links ) )
+	                {
+	                	foreach ( $links as $link ) 
+	                	{
+	                		$product_url = $link->href;
+	                		$this->_getProductData( $product_url );
+	                   	}    		        
+					}
+            	} 
+            }
+     	}
+    	
         $query = Product::find();
         $countQuery = clone $query;
         $pages = new Pagination([

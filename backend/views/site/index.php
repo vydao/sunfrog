@@ -6,7 +6,7 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Wellcome to Administrator</h1>
+        <h1>Welcome to Administrator</h1>
 
         <p class="lead">If you want visit website, please click to link follow:</p>
 
