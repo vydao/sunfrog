@@ -10,6 +10,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $link
  * @property string $photo
  * @property string $com
  */
@@ -32,6 +33,7 @@ class Slider extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
+            [['link'], 'string', 'max' => 255],
             [['com'], 'string', 'max' => 50]
         ];
     }
@@ -45,6 +47,7 @@ class Slider extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Mô tả',
             'photo' => 'Ảnh',
+        	'link' => 'Link',
             'com' => 'Com',
         ];
     }

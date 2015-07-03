@@ -13,9 +13,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
-    <div class="col-lg-12">
-        <?= $form->field($model, 'link')->textInput(['maxlength' => 255]) ?>
-    </div>
+    <?= $form->field($model, 'link')->textInput(['maxlength' => 255]) ?>
     <div class="col-lg-6">
         <?= $form->field($model, 'photo')->fileInput() ?>
     </div>
