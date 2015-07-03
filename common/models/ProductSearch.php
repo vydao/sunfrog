@@ -66,7 +66,8 @@ class ProductSearch extends Product
 	                      ->select('id, image, name, original_url, price')
 	                      ->where($conditions)
 	                      ->orderBy('created_ts DESC')
-	                      ->all(100);
+	                      ->limit(100)
+	                      ->all();
     	}
       
         return $products;
