@@ -127,7 +127,7 @@ if( $logo === null )
                 </li>
                 <li><a href="http://www.sunfrogshirts.com/Contact<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>">Help</a></li>
             </ul>
-            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+            
             </div>
        
     </div>
