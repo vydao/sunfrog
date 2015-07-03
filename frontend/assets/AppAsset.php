@@ -25,7 +25,8 @@ class AppAsset extends AssetBundle
         'css/bootstrap-social.css',
         'css/cd.css',
         'css/bootstrap.min.css',
-        'css/complete.min.css'
+        'css/complete.min.css',
+    	'css/style.css'
     ];
     public $js = [
         'js/jquery.min.js',

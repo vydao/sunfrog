@@ -63,6 +63,9 @@ AppAsset::register($this);
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['config']); ?>"><i class="fa fa-edit fa-fw"></i> Config</a>
                         </li>
                         <li>
+                            <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['slider']); ?>"><i class="fa fa-edit fa-fw"></i> Setting Slider</a>
+                        </li>
+                        <li>
                             <a href="<?php echo Yii::$app->urlManager->createAbsoluteUrl(['logo']); ?>"><i class="fa fa-edit fa-fw"></i> Setting Logo</a>
                         </li>
                     </ul>

@@ -2,24 +2,26 @@
 
 namespace common\models;
 use yii\web\UploadedFile;
+
 use Yii;
 
 /**
- * This is the model class for table "logo1".
+ * This is the model class for table "logo".
  *
  * @property integer $id
+ * @property string $name
  * @property string $photo
+ * @property string $com
  */
-class Logo extends \yii\db\ActiveRecord
+class Slider extends \yii\db\ActiveRecord
 {
-	 public $old_photo;
-	 
+    public $old_photo;
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'logo1';
+        return 'logo';
     }
 
     /**
@@ -28,6 +30,9 @@ class Logo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name'], 'required'],
+            [['name'], 'string', 'max' => 255],
+            [['com'], 'string', 'max' => 50]
         ];
     }
 
@@ -38,11 +43,13 @@ class Logo extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'photo' => 'Photo',
+            'name' => 'Mô tả',
+            'photo' => 'Ảnh',
+            'com' => 'Com',
         ];
     }
     
-	public function afterFind()
+    public function afterFind()
     {
     	$this->old_photo = $this->photo;
     }
@@ -89,11 +96,8 @@ class Logo extends \yii\db\ActiveRecord
     	return parent::beforeValidate();
     }
     
-	public function imageUrl()
+    public function imageUrl()
     {
-    	if( $this->photo )
-    		return Yii::$app->params['site_url'] . 'uploads/logo/' . $this->photo;
-    	else 
-    		return '/images/SunFrogShirts-Logo1.svg';
+    	return Yii::$app->params['site_url'] . 'uploads/logo/' . $this->photo;
     }
 }

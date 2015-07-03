@@ -3,13 +3,22 @@ use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use common\models\Config;
 use common\models\Logo;
+use common\models\Slider;
 use common\models\Category;
+use common\models\Setting;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 $this->title = 'SunFrogShirts';
 AppAsset::register($this);
 $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all();
+$setting_id = Setting::find()->select('name,value')->where('active = 1')->one();
+$logo = Logo::find()->orderBy('id')->one();
+		
+        if( $logo === null )
+        {
+        	$logo = new Logo();
+        }
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
@@ -35,7 +44,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
         <div class="row shellOff">
          <div class="col-sm-3 col-md-2 logocase">
             <a href="/">
-                <img src="/images/SunFrogShirts-Logo1.svg" alt="SunFrog Shirts Logo" class="top-logo">
+                <img src="<?php echo $logo->imageUrl()?>" alt="SunFrog Shirts Logo" class="top-logo">
             </a>
         </div>
 
@@ -98,7 +107,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
                         <?php } ?>
                     </ul>
                 </li>
-                <li><a href="http://www.sunfrogshirts.com/Contact/">Help</a></li>
+                <li><a href="http://www.sunfrogshirts.com/Contact<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>">Help</a></li>
             </ul>
         </div>
     </div>
@@ -114,6 +123,9 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
   <?php foreach( $this->context->slider as $key => $slider ) { ?>
     <div class="item <?php if ($key == 0) echo 'active' ?>">
       <img src="/uploads/logo/<?php echo $slider->photo; ?>" alt="<?php echo $slider->name; ?>">
+      <div class="slider-button">
+      	<a href="<?php echo $slider->link ? $slider->link : '#'?>" class="btn btn-success">Click here!</a>
+      </div>
       <div class="carousel-caption">
                             </div>
                             </div>
@@ -138,19 +150,19 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
 
         <div class="row">
             <div class="col-xs-6 col-md-3">
-                <a href="http://www.sunfrogshirts.com/Fanbuild/" title="New Designs from Fanbuild"><img src="/images/fanbuild-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="Fanbuild on SunFrog"></a>
+                <a href="http://www.sunfrogshirts.com/Fanbuild<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>" title="New Designs from Fanbuild"><img src="/images/fanbuild-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="Fanbuild on SunFrog"></a>
             </div>
 
             <div class="col-xs-6 col-md-3">
-                <a href="http://www.sunfrogshirts.com/CrookedMonkey/" title="New Designs from Crooked Monkey"><img src="/images/crooked-monkey-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="Crooked Monkey On SunFrog"></a>
+                <a href="http://www.sunfrogshirts.com/CrookedMonkey<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>" title="New Designs from Crooked Monkey"><img src="/images/crooked-monkey-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="Crooked Monkey On SunFrog"></a>
             </div>
 
             <div class="col-xs-6 col-md-3">
-                <a href="http://www.sunfrogshirts.com/bt/" title="New Designs from Busted Tees"><img src="/images/busted-tees-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="Busted Tees on SunFrog"></a>
+                <a href="http://www.sunfrogshirts.com/bt<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>" title="New Designs from Busted Tees"><img src="/images/busted-tees-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="Busted Tees on SunFrog"></a>
             </div>
 
             <div class="col-xs-6 col-md-3">
-                <a href="http://www.sunfrogshirts.com/snorgtees/" title="New Designs from Snorg Tees"><img src="/images/snorgtees-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="SnorgTees on SunFrog"></a>
+                <a href="http://www.sunfrogshirts.com/snorgtees<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>" title="New Designs from Snorg Tees"><img src="/images/snorgtees-on-sunfrog.jpg" class="img-responsive pull-left thumbnail " alt="SnorgTees on SunFrog"></a>
             </div>
             <div class="clearfix"></div>
             <br>
@@ -169,7 +181,7 @@ $categories = Category::find()->select('id, name')->orderBy('priority ASC')->all
 <div class="lightbg">
     <div class="container" style="padding:1em 0em;">
         <div class="text-center">
-            <a href="http://www.sunfrogshirts.com/returns/">
+            <a href="http://www.sunfrogshirts.com/returns<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>">
                 <img src="/images/satisfaction-lg.svg" class="img-responsive center-block" alt="Satisfaction Guranteed">
             </a>
             <p>If you don't absolutely love your print, we'll take it back! </p>

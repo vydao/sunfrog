@@ -5,7 +5,7 @@ use Yii;
 use yii\web\Controller;
 use frontend\models\ContactForm;
 use common\models\Config;
-use common\models\Logo;
+use common\models\Slider;
 
 use app\components\CController;
 
@@ -45,7 +45,7 @@ class SiteController extends CController
     	$session->remove('category');
     	
         $this->is_home_page = true;
-        $this->slider = Logo::find()->select('photo, name')->all();
+        $this->slider = Slider::find()->select('photo, name')->all();
 
         $search_params = Yii::$app->request->get('SEARCH');
         if(!empty($search_params)){

@@ -3,9 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use common\models\Logo;
-use yii\data\ActiveDataProvider;
+use common\models\LogoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -15,68 +14,36 @@ use yii\filters\VerbFilter;
  */
 class LogoController extends Controller
 {
-    public $layout = 'dashboard';    
+	public $layout = 'dashboard';
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['update', 'index', 'create'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
                 ],
-            ],            
+            ],
         ];
     }
-
-    /**
-     * Lists all Logo models.
-     * @return mixed
-     */
+    
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Logo::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-       
-    /**
-     * Updates an existing Logo model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {            
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $model = Logo::find()->orderBy('id')->one();
+		
+        if( $model === null )
+        {
+        	$model = new Logo();
         }
-    }
-
-    public function actionCreate()
-    {
-        $model = new Logo();
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            
         }
+        
+        return $this->render('update', [
+        	'model' => $model
+        ]);
+        
     }
 
     /**

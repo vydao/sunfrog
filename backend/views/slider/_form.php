@@ -12,20 +12,23 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
+    <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
+    <div class="col-lg-12">
+        <?= $form->field($model, 'link')->textInput(['maxlength' => 255]) ?>
+    </div>
     <div class="col-lg-6">
         <?= $form->field($model, 'photo')->fileInput() ?>
-        <small style="color: #000BDA;">(Best size : 135 x 51 px.)</small>
     </div>
-	
-	<div class="col-lg-6">
-        <?=Html::img($model->imageUrl(),['style'=>'max-width:200px;'])?>
+    
+    <div class="col-lg-6">
+        <?=Html::img($model->imageUrl(),['style'=>'max-width:100px;max-height: 100px;'])?>
     </div>
-   <div class="clearfix"></div>
+    <div class="clearfix"></div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
-	
+
     <?php ActiveForm::end(); ?>
 
 </div>

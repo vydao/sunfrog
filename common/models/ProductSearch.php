@@ -54,13 +54,20 @@ class ProductSearch extends Product
     			$conditions .= "`category_id` = {$params['cId']}";
     	}
     	
-    	
-    	
-        $products = Product::find()
-                      ->select('id, image, name, original_url, price')
-                      ->where($conditions)
-                      ->orderBy('created_ts DESC')
-                      ->all();
+    	if( $params['cId'] )
+    	{
+	    	$products = Product::find()
+	                      ->select('id, image, name, original_url, price')
+	                      ->where($conditions)
+	                      ->orderBy('created_ts DESC')
+	                      ->all();
+    	} else {
+    		$products = Product::find()
+	                      ->select('id, image, name, original_url, price')
+	                      ->where($conditions)
+	                      ->orderBy('created_ts DESC')
+	                      ->all(100);
+    	}
       
         return $products;
     }

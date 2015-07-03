@@ -1,53 +1,45 @@
 @charset "utf-8";
 /* CSS Document */
-
+/*
 body {
 	font: 12px Helvetica, Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
 	color: #000;
 }
-/* ~~ Element/tag selectors ~~ */
-ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+ul, ol, dl {
 	padding: 0;
 	margin: 0;
 	list-style:none;
 }
 h1, h2, h3, h4, h5, h6, p {
 }
-a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+a img { 
 	border: none;
 }
-/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
 a:link {
 	color: #000;
-	text-decoration: underline; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+	text-decoration: underline;
 }
 a:visited {
 	color: #6E6C64;
 	text-decoration: underline;
 }
-a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+a:hover, a:active, a:focus { 
 	text-decoration: none;
 }
 
-/*HTML 5 support - Sets new HTML 5 tags to display:block so browsers know how to render the tags properly. */
 header, section, footer, aside, article, figure {
 	display: block;
 }
 .clear{ clear:both; }
-/* END STYLE DÈAULT*/
 
-
-/* ~~ This fixed width container surrounds all other blocks ~~ */
 .container {
 	width: 1000px !important;
-	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	margin: 0 auto;
     padding: 0px !important;
 }
 
-
-/* HEADER */
 header {
 	background-color: #FFF;
 	moz-box-shadow: 0 10px 135px 5px #d0d0d0;
@@ -115,14 +107,13 @@ header {
 	font-weight:bold;
 	color:#FFF;
 	margin-left:10px;
-	background: -webkit-linear-gradient(0deg, #000, #666); /* For Safari 5.1 to 6.0 */
-	background: -o-linear-gradient(0deg, #000, #666); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(0deg, #000, #666); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(0deg, #000, #666); /* Standard syntax */
+	background: -webkit-linear-gradient(0deg, #000, #666); 
+	background: -o-linear-gradient(0deg, #000, #666); 
+	background: -moz-linear-gradient(0deg, #000, #666); 
+	background: linear-gradient(0deg, #000, #666);
 	
 	border-radius:5px; -moz-border-radius:5px; -ms-border-radius:5px; -o-border-radius:5px; -webkit-border-radius:5px;
 }
-/* END HEADER */
 
 .wrapper{
 	padding-top:15px;
@@ -149,7 +140,6 @@ header {
 	padding:0px 7px;
 }
 
-/*LEFT*/
 .sidebar_left {
 	float: left;
 	width: 190px;
@@ -218,7 +208,6 @@ header {
 	color:#3495d2;
 	text-decoration:underline;
 }
-/*LEFT*/
 
 .main_content {
 	width: 795px;
@@ -239,8 +228,6 @@ header {
 	float:left;
 }
 
-
-/*PRODUCT*/
 .product_info{
 	width:187px;
 	float:left;
@@ -308,9 +295,6 @@ header {
 	float:left;
 	margin:10px 0px;
 }
-/*PRODUCT*/
-
-/* ~~ The footer ~~ */
 footer {
 	margin-top:15px;
 	padding:15px 0px;
@@ -482,4 +466,16 @@ div.news-content{float: left;width: 100%;color: #444;font-size: 16px;line-height
 .news-content h1 {font-size: 26px;color: #003;font-weight: bold;display: inline-block;}
 .news-content h2.sapo {font-size: 16px;color: #333;font-weight: bold;display: inline-block;margin-top: 10px;font-family: Arial,Helvetica,sans-serif;}
 .news-content-image{width: 100%; text-align: center;}
-.news-content-image img{max-width: 100%;}s
+.news-content-image img{max-width: 100%;}
+*/
+.slider-button{
+	position: absolute;
+	top: 46%;
+	left: 21%;
+}
+.slider-button a{
+	padding: 8px 50px 8px 50px;
+	font-weight: 700;
+	font-size: 19px;
+	border-radius: 6px;
+}
