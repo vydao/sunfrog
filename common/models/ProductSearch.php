@@ -42,7 +42,7 @@ class ProductSearch extends Product
     public function search($params)
     {
     	$conditions = null;
-    	if( $params['cId'] )
+    	if( $params['search'] )
     	{
     		$conditions .= "`name` LIKE '%{$params['search']}%'";
     	}
