@@ -11,14 +11,13 @@ use common\models\Setting;
 /* @var $content string */
 $this->title = 'SunFrogShirts';
 AppAsset::register($this);
-$categories = Category::find()->select('id, name')->orderBy('priority ASC')->all();
+$categories = Category::find()->select('id, name')->orderBy('priority ASC, name')->all();
 $setting_id = Setting::find()->select('name,value')->where('active = 1')->one();
 $logo = Logo::find()->orderBy('id')->one();
-		
-        if( $logo === null )
-        {
-        	$logo = new Logo();
-        }
+if( $logo === null )
+{
+	$logo = new Logo();
+}
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
@@ -37,6 +36,25 @@ $logo = Logo::find()->orderBy('id')->one();
     <link rel="apple-touch-icon" href="http://www.sunfrogshirts.com/Images/SunFrog-Square-Logo.svg">
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52135093-6', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <?php $this->beginBody() ?>
     <nav class="navbar navbar-default shellOff" id="MainNav">
 
@@ -109,7 +127,9 @@ $logo = Logo::find()->orderBy('id')->one();
                 </li>
                 <li><a href="http://www.sunfrogshirts.com/Contact<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>">Help</a></li>
             </ul>
-        </div>
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+            </div>
+       
     </div>
     <div class="clearfix"></div>
 </div>
@@ -124,7 +144,7 @@ $logo = Logo::find()->orderBy('id')->one();
     <div class="item <?php if ($key == 0) echo 'active' ?>">
       <img src="/uploads/logo/<?php echo $slider->photo; ?>" alt="<?php echo $slider->name; ?>">
       <div class="slider-button">
-      	<a href="<?php echo $slider->link ? $slider->link : '#'?>" class="btn btn-success">Click here!</a>
+      	<a href="<?php echo !empty($slider->link) ? $slider->link : '#'?>" class="btn btn-success">Click here!</a>
       </div>
       <div class="carousel-caption">
                             </div>
