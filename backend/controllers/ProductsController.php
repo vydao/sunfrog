@@ -210,7 +210,7 @@ class ProductsController extends \yii\web\Controller
                 'price' => 0.00,
                 'details' => '',
                 'original_url' => '',
-                'created_ts' => date('Ymd')
+                'created_ts' => time()
             ];
 
             $category = Yii::$app->request->post('category');
