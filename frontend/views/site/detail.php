@@ -28,6 +28,45 @@ $url = Yii::$app->params['_url'];
 				<a href="<?php echo $product->original_url . $setting_id?>" type="button" name="submit" class="btn btn-lg btn-block btn-xxl btn-success btn-bright  hidden-xs">Add To Cart &nbsp;&nbsp;<i class="fa fa-caret-right"></i></a>
 			</div>
 			<div class="clearfix"></div>
+			
+			
+			<div class="form-group" style="position: relative;">
+				<label style="position: absolute; margin-top: -10px;">Color</label>
+				<div class="clearfix"></div>
+				<a href="<?php echo $product->original_url . $setting_id?>">
+					<div class="btn-group" data-toggle="">
+						<label for="NavyBlue" class="btn btn-default colorBorder" style="padding: 0px;" title="NavyBlue">
+							<div class="swatchColorContainer" style="background:url('/images/NavyBlue.jpg') top left repeat;"></div>
+						</label>
+						<label for="LightPink" class="btn btn-default colorBorder" style="padding: 0px;" title="LightPink">
+							<div class="swatchColorContainer" style="background:url('/images/LightPink.jpg') top left repeat;"></div>
+						</label>
+						<label for="Purple" class="btn btn-default colorBorder" style="padding: 0px;" title="Purple">
+							<div class="swatchColorContainer" style="background:url('/images/Purple.jpg') top left repeat;"></div>
+						</label>
+						<label for="RoyalBlue" class="btn btn-default colorBorder" style="padding: 0px;" title="RoyalBlue">
+								<div class="swatchColorContainer" style="background:url('/images/RoyalBlue.jpg') top left repeat;"></div>
+						</label>
+						<label for="DarkGrey" class="btn btn-default colorBorder" style="padding: 0px;" title="DarkGrey">
+								<div class="swatchColorContainer" style="background:url('/images/DarkGrey.jpg') top left repeat;"></div>
+						</label>
+						<label for="Black" class="btn btn-default colorBorder active" style="padding: 0px;" title="Black">
+							<div class="swatchColorContainer" style="background:url('/images/Black.jpg') top left repeat;"></div>
+						</label>
+						<label for="Red" class="btn btn-default colorBorder" style="padding: 0px;" title="Red">
+							<div class="swatchColorContainer" style="background:url('/images/Red.jpg') top left repeat;"></div>
+						</label>
+						<label for="Green" class="btn btn-default colorBorder" style="padding: 0px;" title="Green">
+							<div class="swatchColorContainer" style="background:url('/images/Green.jpg') top left repeat;"></div>
+						</label>
+						<label for="HotPink" class="btn btn-default colorBorder" style="padding: 0px;" title="HotPink">
+							<div class="swatchColorContainer" style="background:url('/images/HotPink.jpg') top left repeat;"></div>
+						</label>
+					</div>
+				</a>
+			</div>
+			<div class="clearfix"></div>
+			
 			<div class="hidden-xs">
 				<div class="clearfix"></div>
 
@@ -39,7 +78,7 @@ $url = Yii::$app->params['_url'];
 				<div class="alt-bg alt-bg-pad">
 
 					<div class="col-xs-6 visible-xs">
-						<a href="http://www.sunfrogshirts.com/returns/">
+						<a href="http://www.sunfrogshirts.com/returns<?php echo $setting_id?'?'.$setting_id:'';?>">
 							<img src="/images/satisfaction.svg" width="296" height="66" alt="100% Satisfaction Guaranteed!" class="img-responsive cen-sm">
 						</a>
 					</div>
@@ -75,8 +114,8 @@ $url = Yii::$app->params['_url'];
 			<div class="alt-bg alt-bg-pad visible-xs">
 
 				<div class="col-xs-6">
-					<a href="http://www.sunfrogshirts.com/returns/">
-						<img src="./Science T-Shirt_files/satisfaction.svg" width="296" height="66" alt="100% Satisfaction Guaranteed!" class="img-responsive cen-sm">
+					<a href="http://www.sunfrogshirts.com/returns<?php echo $setting_id?'?'.$setting_id:'';?>">
+						<img src="/images/satisfaction.svg" width="296" height="66" alt="100% Satisfaction Guaranteed!" class="img-responsive cen-sm">
 					</a>
 				</div>
 

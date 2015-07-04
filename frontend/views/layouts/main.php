@@ -144,9 +144,10 @@ window._fbq.push(['track', 'PixelInitialized', {}]);
                 </li>
                 <li><a href="http://www.sunfrogshirts.com/Contact<?php echo !empty($setting_id) ? '?'.$setting_id->name : ''?>">Help</a></li>
             </ul>
-            
+            <a href="#">
+                <img src="<?php echo $logo->imageUrl()?>" alt="SunFrog Shirts Logo" class="top-logo">
+            </a>
             </div>
-       
     </div>
     <div class="clearfix"></div>
 </div>
@@ -159,10 +160,9 @@ window._fbq.push(['track', 'PixelInitialized', {}]);
         <div class="carousel-inner" role="listbox">
   <?php foreach( $this->context->slider as $key => $slider ) { ?>
     <div class="item <?php if ($key == 0) echo 'active' ?>">
-      <img src="/uploads/logo/<?php echo $slider->photo; ?>" alt="<?php echo $slider->name; ?>">
-      <div class="slider-button">
-      	<a href="<?php echo !empty($slider->link) ? $slider->link : '#'?>" class="btn btn-success">Click here!</a>
-      </div>
+    <a href="<?php echo $slider->link;?>">
+     	<img src="/uploads/logo/<?php echo $slider->photo; ?>" alt="<?php echo $slider->name; ?>">
+     </a>
       <div class="carousel-caption">
                             </div>
                             </div>
@@ -227,85 +227,7 @@ window._fbq.push(['track', 'PixelInitialized', {}]);
     </div>
 </div>
 <?php } ?>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-63977646-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<!--div id="footer" class="shellOff">
-    <div class="darkbg shellOff">
-        <div class="container" style="padding-top:1.5em;">
-            <div class="col-sm-offset-0 col-sm-6 col-sm-push-6">
-                <a href="https://www.facebook.com/SunFrogShirts" target="new" class="socialIcon facebook"></a>
-                <a href="mailto:info@sunfrogshirts.com" target="new" class="socialIcon email"></a>
-                <a href="https://instagram.com/sunfrogshirts" target="new" class="socialIcon instagram"></a>
-                <a href="https://pinterest.com/SunFrogShirts/" target="new" class="socialIcon pinterest"></a>
-                <a href="http://www.stumbleupon.com/stumbler/SunfrogShirts" target="new" class="socialIcon stumble"></a>
-                <a href="https://www.twitter.com/SunFrogShirts" target="new" class="socialIcon twitter"></a>
-                <div class="clearfix"></div>
-                <br><br>
-            </div>
-            <div class="col-sm-6 col-sm-pull-6">
-                <div class="col-sm-6">
-                    <h4>General</h4>
-                    <a href="http://www.sunfrogshirts.com/Tracking/">Order Tracking</a><br>
-                    <a href="http://www.sunfrogshirts.com/Contact/">FAQ/Help</a><br>
-                    <a href="http://www.sunfrogshirts.com/size/">Sizing</a><br><br>
-                    <h4>Legal</h4>
-                    <a href="http://www.sunfrogshirts.com/terms/">Terms</a><br>
-                    <a href="http://www.sunfrogshirts.com/copyright/">Copyright</a><br>
-                    <a href="http://www.sunfrogshirts.com/terms/privacy-policy.cfm">Privacy Policy</a><br><br>
-                </div>
-
-                <div class="col-sm-6">
-                    <h4>Our Team</h4>
-                    <a href="https://manager.sunfrogshirts.com/">My Account</a><br>
-                    <a href="https://manager.sunfrogshirts.com/artist-signup.cfm">Artist Signup</a><br>
-                    <a href="http://www.sunfrogshirts.com/Affiliates/">Affiliate Signup</a><br>
-                    <a href="http://www.sunfrogshirts.com/Affiliates/why-use-sunfrog.cfm">Why Use SunFrog?</a><br>
-                    <a href="http://www.sunfrogshirts.com/Affiliates/sunfrog-success.cfm">SunFrog Success</a><br><br>
-                </div>
-
-                <div class="col-sm-6 ">
-                    <h4>More</h4>
-                    <a href="http://www.sunfrogshirts.com/Wholesale/">Custom WholeSale</a><br>
-                    <a href="http://www.sunfrogshirts.com/Marketing/">Marketing</a><br>
-                    <a href="http://www.sunfrogshirts.com/Jobs.cfm">Jobs</a><br><br>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <br>
-        </div>
-    </div>
-
-    <div class="shellOff" style="padding-top:1em; background:#161616;">
-        <div class="container">
-            <p class="text-muted small">© COPYRIGHT SUNFROGSHIRTS.COM 2015</p>
-        </div>
-    </div>
-
-</div-->
-
-<script>
-    // ie10 viewport bug workaround
-    (function () {
-      'use strict';
-      if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-        var msViewportStyle = document.createElement('style')
-        msViewportStyle.appendChild(
-          document.createTextNode(
-            '@-ms-viewport{width:auto!important}'
-            )
-          )
-        document.querySelector('head').appendChild(msViewportStyle)
-    }
-})();
-</script>
 <?php $this->endBody() ?>
 </body>
 
