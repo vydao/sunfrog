@@ -31,7 +31,7 @@ if( $logo === null )
     <meta name="Keywords" content="sunfrog, sun frog, shirts, t-shirts, funny t-shirts, funny shirts, t-shirt, tshirts, crazy t-shirts, tee shirts, offensive t-shirts, politically incorrect t-shirts, cool shirts, tshirt, tee-shirts, tee-shirt">
     <meta name="Description" content="Welcome to SunFrog! Shop t-shirts. Choose from over 2,000,000 unique tees. Sunfrog has a large selection of shirt styles. Satisfaction guaranteed.">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode('Shirt & Hoodie') ?></title>
     <?php $this->head() ?>
     <link rel="apple-touch-icon" href="http://www.sunfrogshirts.com/Images/SunFrog-Square-Logo.svg">
 </head>
