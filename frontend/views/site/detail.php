@@ -15,8 +15,13 @@ $url = Yii::$app->params['_url'];
 				<a data-toggle="modal" data-target="#imageModal" data-theimage="<?php echo $product->imageUrl; ?>">
 					<img src="<?php echo $product->imageUrl; ?>" alt="Science T-Shirt" width="651" height="651" class="img-responsive lg_view">
 				</a>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div>			
 			</div>
+			
+			Link : <a href="<?php echo $product->original_url . $setting_id?>"><?php echo $product->original_url . $setting_id?></a>
+			<br><br>
+			<div class="clearfix"></div>
+			
 			<div class="explain hidden-xs">
 				<p><strong>Design Description:</strong></p>
 				<p><?php echo $product->description; ?></p>
